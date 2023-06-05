@@ -24,6 +24,10 @@ byte x+0xE: 是否是数学输入 (MathI)
 
 bytte x+0xF: 分数结果 0,1=假分数,带分数
 
+byte x+0x27: 字体大小 8/10(A)/14(E)
+
+byte x+0x29: current_screen_buffer # ==0 -> x+0x12C4, !=0 -> x+0xCC4. Affects many drawing functions
+
 byte x+0x45: 光标位置 (从0开始，到255结束)，插入模式下，光标在对应字符的左侧
 
 byte x+0x70 到 x+0x136 (两端包含): 输入区，长度199bytes，从输入区第189byte开始，光标变宽
@@ -72,7 +76,13 @@ byte x+0x282 到 x+0x411：历史记录 长度400bytes （每一条都会以0x23
 
 &nbsp;&nbsp; byte x+0x2A0 到 x+0x2A9: 变量@ 0x4F (长度10bytes)
 
+byte x+0xAD7: 数学模式下输入区内容的长度（即二进制表示的字节数）
+
 byte x+0xAF2 到 x+0xAFB: 变量$ 0x24 长度10bytes
+
+byte x+0xCC4: screen buffer
+
+byte x+0x12C4: screen buffer
 
 #### lbf转换器原理
 
