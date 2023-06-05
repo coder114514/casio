@@ -1,3 +1,5 @@
+[反编译](https://github.com/qiufuyu123/fxesplus)
+
 ### CLASSWIZ fx-991CN X
 
 打开模拟器，Cheat Engine 搜索 0000C100，若地址为x：（实际机器应该也是一样的）
@@ -5,6 +7,22 @@
 byte x: 08 代表shift按下，04 代表alpha按下，00表示都没按下
 
 byte x+1: 当前模式 C1是COMP，C4是COMPLEX，C0是68
+
+byte x+2: 子模式
+
+byte x+3: 当前屏幕，00表示计算界面，01表示模式选择界面，02表示设置
+
+byte x+4: 输入模式（与不同计算模式相关）
+
+byte x+0xA: 显示格式（常规，位数，科学）
+
+byte x+0xB: 显示格式的编号/位数/有效数字 0-9
+
+byte x+0xD: 角度单位 4,5,6=角度,弧度,百分度
+
+byte x+0xE: 是否是数学输入 (MathI)
+
+bytte x+0xF: 分数结果 0,1=假分数,带分数
 
 byte x+0x45: 光标位置 (从0开始，到255结束)，插入模式下，光标在对应字符的左侧
 
