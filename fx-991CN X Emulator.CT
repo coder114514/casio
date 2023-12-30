@@ -23,10 +23,99 @@
         </CheatEntry>
         <CheatEntry>
           <ID>875</ID>
-          <Description>"RAM 起始位置"</Description>
+          <Description>"RAM Segment 4? 起始位置"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>4 Bytes</VariableType>
           <Address>SimU8.dll+16CE6C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>694</ID>
+          <Description>"Currently executing cmd first word"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CE50</Address>
+          <Offsets>
+            <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1))</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>693</ID>
+          <Description>"Currently executing cmd second word if any"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CE50</Address>
+          <Offsets>
+            <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1)) + 2</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>690</ID>
+          <Description>"CSR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Binary</VariableType>
+          <BitStart>0</BitStart>
+          <BitLength>4</BitLength>
+          <ShowAsBinary>0</ShowAsBinary>
+          <Address>SimU8.dll+16CEBE</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>688</ID>
+          <Description>"PC &lt;write@ SimU8engine.dll+1758&gt;"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>686</ID>
+          <Description>"LCSR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Binary</VariableType>
+          <BitStart>0</BitStart>
+          <BitLength>4</BitLength>
+          <ShowAsBinary>0</ShowAsBinary>
+          <Address>SimU8.dll+16CEBF</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>687</ID>
+          <Description>"LR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEB6</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>692</ID>
+          <Description>"ROM window size"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SimU8.dll+16CE7C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>685</ID>
+          <Description>"PSW"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>SimU8.dll+16CEC3</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>684</ID>
+          <Description>"SP push -&gt; decrease"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>683</ID>
+          <Description>"EA"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CECA</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>682</ID>
+          <Description>"DSR?"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>SimU8.dll+16CECC</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -112,7 +201,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>870</ID>
-      <Description>"RAM 64KiB 有效部分为 D000-FFFF"</Description>
+      <Description>"RAM Segment 4? 64KiB 有效部分为 D000-FFFF"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -260,6 +349,7 @@
         <CheatEntry>
           <ID>878</ID>
           <Description>"变量 (D31A-D391,D392-D3B9,DC02)"</Description>
+          <Options moManualExpandCollapse="1"/>
           <LastState Value="" RealAddress="00000000"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -451,6 +541,17 @@
               </Offsets>
             </CheatEntry>
           </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>612</ID>
+          <Description>"栈"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>24</ByteLength>
+          <Address>SimU8.dll+16CE6C</Address>
+          <Offsets>
+            <Offset>readInteger "SimU8.dll+16CEC8" &amp; 0xFFFF</Offset>
+          </Offsets>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
