@@ -10,7 +10,6 @@
         <CheatEntry>
           <ID>873</ID>
           <Description>"ROM Segment 0 起始位置 "</Description>
-          <LastState Value="02DC0048" RealAddress="722BCE50"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>4 Bytes</VariableType>
           <Address>SimU8.dll+16CE50</Address>
@@ -18,7 +17,6 @@
         <CheatEntry>
           <ID>874</ID>
           <Description>"ROM Segment 1-3 起始位置"</Description>
-          <LastState Value="04FC1020" RealAddress="722BCE88"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>4 Bytes</VariableType>
           <Address>SimU8.dll+16CE88</Address>
@@ -26,7 +24,6 @@
         <CheatEntry>
           <ID>875</ID>
           <Description>"RAM 起始位置"</Description>
-          <LastState Value="02DD0050" RealAddress="722BCE6C"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>4 Bytes</VariableType>
           <Address>SimU8.dll+16CE6C</Address>
@@ -36,7 +33,6 @@
     <CheatEntry>
       <ID>869</ID>
       <Description>"ROM Segment 0 64KiB"</Description>
-      <LastState Value="00 F0 EE 95 F0 95 60 00 DC 95 DC 95 DC 95 DC 95" RealAddress="02DC0048"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -48,7 +44,6 @@
         <CheatEntry>
           <ID>864</ID>
           <Description>"sin text"</Description>
-          <LastState RealAddress="02DC2760"/>
           <VariableType>String</VariableType>
           <Length>3</Length>
           <Unicode>0</Unicode>
@@ -59,7 +54,6 @@
         <CheatEntry>
           <ID>858</ID>
           <Description>"diagnostic text"</Description>
-          <LastState RealAddress="02DC4E75"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>String</VariableType>
           <Length>100</Length>
@@ -73,7 +67,6 @@
     <CheatEntry>
       <ID>866</ID>
       <Description>"ROM Segment 1 64KiB"</Description>
-      <LastState Value="CE F8 5E FE 1A AE 9C E1 9C E1 6E F8 5E FC 6E F4" RealAddress="04FC1020"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -85,7 +78,6 @@
     <CheatEntry>
       <ID>867</ID>
       <Description>"ROM Segment 2 64KiB"</Description>
-      <LastState Value="CE F8 4E F9 5E FC 5E F4 4E F4 A5 FE C5 F0 A8 E0" RealAddress="04FD1020"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -97,7 +89,6 @@
     <CheatEntry>
       <ID>679</ID>
       <Description>"ROM Segment 3 64KiB"</Description>
-      <LastState Value="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" RealAddress="04FE1020"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -109,7 +100,6 @@
         <CheatEntry>
           <ID>681</ID>
           <Description>"型号"</Description>
-          <LastState RealAddress="04FF100E"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>String</VariableType>
           <Length>10</Length>
@@ -123,7 +113,6 @@
     <CheatEntry>
       <ID>870</ID>
       <Description>"RAM 64KiB 有效部分为 D000-FFFF"</Description>
-      <LastState Value="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" RealAddress="02DD0050"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -135,7 +124,6 @@
         <CheatEntry>
           <ID>1</ID>
           <Description>"modifier"</Description>
-          <LastState Value="00" RealAddress="02DDD160"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D110</Address>
@@ -143,7 +131,6 @@
         <CheatEntry>
           <ID>2</ID>
           <Description>"模式"</Description>
-          <LastState Value="C1" RealAddress="02DDD161"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D111</Address>
@@ -151,7 +138,6 @@
         <CheatEntry>
           <ID>868</ID>
           <Description>"子模式"</Description>
-          <LastState Value="00" RealAddress="02DDD162"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D112</Address>
@@ -159,10 +145,312 @@
         <CheatEntry>
           <ID>871</ID>
           <Description>"当前屏幕 00,01,02=计算,模式选择,设置"</Description>
-          <LastState Value="00" RealAddress="02DDD163"/>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D113</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>876</ID>
+          <Description>"输入模式"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D114</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>877</ID>
+          <Description>"显示格式"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D11A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>897</ID>
+          <Description>"显示格式相关"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D11B</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>898</ID>
+          <Description>"角度单位"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D11D</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>899</ID>
+          <Description>"是否是数学输入"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D11E</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>900</ID>
+          <Description>"分数结果 0,1=假分数,真分数"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D11F</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>901</ID>
+          <Description>"字体大小 8/A/E"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D137</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>902</ID>
+          <Description>"current_screen_buffer"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D139</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>903</ID>
+          <Description>"光标位置"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D155</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>904</ID>
+          <Description>"输入区"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>199</ByteLength>
+          <Address>+D180</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>905</ID>
+          <Description>"输入区 undo区 seperator"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D247</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>906</ID>
+          <Description>"undo区"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>199</ByteLength>
+          <Address>+D248</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>907</ID>
+          <Description>"undo区 结束"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D30F</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>908</ID>
+          <Description>"不稳定字符"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>+D318</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>895</ID>
+          <Description>"历史记录"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>400</ByteLength>
+          <Address>+D392</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>878</ID>
+          <Description>"变量 (D31A-D391,D392-D3B9,DC02)"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>879</ID>
+              <Description>"M"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D31A</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>880</ID>
+              <Description>"Ans"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D324</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>881</ID>
+              <Description>"A"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D32E</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>882</ID>
+              <Description>"B"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D338</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>883</ID>
+              <Description>"C"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D342</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>884</ID>
+              <Description>"D"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D34C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>885</ID>
+              <Description>"E"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D356</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>886</ID>
+              <Description>"F"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D360</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>887</ID>
+              <Description>"x"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D36A</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>888</ID>
+              <Description>"y"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D374</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>889</ID>
+              <Description>"PreAns"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D37E</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>890</ID>
+              <Description>"@ 0x4B"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D388</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>891</ID>
+              <Description>"@ 0x4C (0x4C-0x4F 与历史记录重叠)"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D392</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>892</ID>
+              <Description>"@ 0x4D"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D39C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>893</ID>
+              <Description>"@ 0x4E"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D3A6</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>894</ID>
+              <Description>"@ 0x4F"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>D3B0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>896</ID>
+              <Description>"$"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>SimU8.dll+16CE6C</Address>
+              <Offsets>
+                <Offset>DC02</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>

@@ -21,7 +21,7 @@ RAM地址       作用
  D11E       是否是数学输入 (MathI)
  D11F       分数结果 0,1=假分数,带分数
  D137       字体大小 8/10/14
- D139       current_screen_buffer (?) # ==0 -> x+0x12C4, !=0 -> x+0xCC4. Affects many drawing functions (?)
+ D139       current_screen_buffer (?) # ==0 -> 0E3D4, !=0 -> 0DDD4. Affects many drawing functions (?)
  D155       光标位置(0~255)，插入模式下，光标在对应字符的左侧
  D180       截止到 0D246 x+0x136(包含), 输入区, 长度199bytes, 从输入区第189byte开始, 光标变宽
  D247       正常为00, 用来分隔输入区和undo区 [输入区第200byte]
