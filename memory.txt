@@ -1,46 +1,53 @@
-官方模拟器上 x=[SimU8.dll+16CE6C]+0D110 真机上 x=0D110
+官方模拟器上
+ROM 第0段位于 [SimU8.dll+16CE50]
+ROM 第1段位于 [SimU8.dll+16CE88]
+ROM 第2段位于 [SimU8.dll+16CE88]+10000
+ROM 第3段位于 [SimU8.dll+16CE88]+20000
+RAM 位于 [SimU8.dll+16CE6C]
 
-真机地址 关于x的偏移量 作用
-0D110 x        04,08,00=shift按下,alpha按下,都没按下
-0D111 x+1      当前模式 C0,C1,C4,02=数学68,COMP,CMPLX,BASE
-0D112 x+2      子模式
-0D113 x+3      当前屏幕 00,01,02=计算界面,模式选择界面,设置界面
-0D114 x+4      输入模式 normal1, stat/table12, matrix13, vector14, eqn15, ratio17, ineq18 (?)
-0D11A x+0xA    显示格式 8,9,0,4=位数,科学,常规1,常规2
-0D11B x+0xB    显示格式位数/有效数字或者表示是常规1还是常规2 范围0-9
-0D11D x+0xD    角度单位 4,5,6=角度,弧度,百分度
-0D11E x+0xE    是否是数学输入 (MathI)
-0D11F x+0xF    分数结果 0,1=假分数,带分数
-0D137 x+0x27   字体大小 8/10/14
-0D139 x+0x29   current_screen_buffer (?) # ==0 -> x+0x12C4, !=0 -> x+0xCC4. Affects many drawing functions (?)
-0D155 x+0x45   光标位置(0~255)，插入模式下，光标在对应字符的左侧
-0D180 x+0x70   截止到 0D246 x+0x136(包含), 输入区, 长度199bytes, 从输入区第189byte开始, 光标变宽
-0D247 x+0x137  正常为00, 用来分隔输入区和undo区 [输入区第200byte]
-0D248 x+0x138  截至到 0D30E x+0x1FE(包含), undo区, 长度199bytes, 每次按下=后输入区会被复制到这里，没有输入时按←/→复制到输入区 [输入区第201byte到第399byte]
-0D30F x+0x1FF  正常为00，undo区结束 [输入区第400byte]
-0D318 x+0x208  截止到 0D319 x+0x209, 2bytes, 不稳定字符(随机数种子的一部分) [输入区第409到410byte]
+RAM 有效部分为 D000-FFFF
+
+RAM地址       作用
+ D110       04,08,00=shift按下,alpha按下,都没按下
+ D111       当前模式 C0,C1,C4,02=数学68,COMP,CMPLX,BASE
+ D112       子模式
+ D113       当前屏幕 00,01,02=计算界面,模式选择界面,设置界面
+ D114       输入模式 normal1, stat/table12, matrix13, vector14, eqn15, ratio17, ineq18 (?)
+ D11A       显示格式 8,9,0,4=位数,科学,常规1,常规2
+ D11B       显示格式位数/有效数字或者表示是常规1还是常规2 范围0-9
+ D11D       角度单位 4,5,6=角度,弧度,百分度
+ D11E       是否是数学输入 (MathI)
+ D11F       分数结果 0,1=假分数,带分数
+ D137       字体大小 8/10/14
+ D139       current_screen_buffer (?) # ==0 -> x+0x12C4, !=0 -> x+0xCC4. Affects many drawing functions (?)
+ D155       光标位置(0~255)，插入模式下，光标在对应字符的左侧
+ D180       截止到 0D246 x+0x136(包含), 输入区, 长度199bytes, 从输入区第189byte开始, 光标变宽
+ D247       正常为00, 用来分隔输入区和undo区 [输入区第200byte]
+ D248       截至到 0D30E x+0x1FE(包含), undo区, 长度199bytes, 每次按下=后输入区会被复制到这里，没有输入时按←/→复制到输入区 [输入区第201byte到第399byte]
+ D30F       正常为00，undo区结束 [输入区第400byte]
+ D318       截止到 0D319 x+0x209, 2bytes, 不稳定字符(随机数种子的一部分) [输入区第409到410byte]
 
 变量 0x40~0x4F：每个长度都是10bytes
-0D31A~0D323 x+0x20A~x+0x213: 变量M      0x40
-0D324~0D32D x+0x214~x+0x21D: 变量Ans    0x41
-0D32E~0D337 x+0x21E~x+0x227: 变量A      0x42
-0D338~0D341 x+0x228~x+0x231: 变量B      0x43
-0D342~0D34B x+0x232~x+0x23B: 变量C      0x44
-0D34C~0D355 x+0x23C~x+0x245: 变量D      0x45
-0D356~0D35F x+0x246~x+0x24F: 变量E      0x46
-0D360~0D369 x+0x250~x+0x259: 变量F      0x47
-0D36A~0D373 x+0x25A~x+0x263: 变量x      0x48
-0D374~0D37D x+0x264~x+0x26D: 变量y      0x49
-0D37E~0D387 x+0x26E~x+0x277: 变量PreAns 0x4A
-0D388~0D391 x+0x278~x+0x281: 变量@      0x4B
+ D31A~D323: 变量M      0x40
+ D324~D32D: 变量Ans    0x41
+ D32E~D337: 变量A      0x42
+ D338~D341: 变量B      0x43
+ D342~D34B: 变量C      0x44
+ D34C~D355: 变量D      0x45
+ D356~D35F: 变量E      0x46
+ D360~D369: 变量F      0x47
+ D36A~D373: 变量x      0x48
+ D374~D37D: 变量y      0x49
+ D37E~D387: 变量PreAns 0x4A
+ D388~D391: 变量@      0x4B
 
-0D392~0D521 x+0x282~x+0x411：历史记录 长度400bytes (每一条都会以0x23结尾)
-    0D392~0D39B x+0x282~x+0x28B: 变量@  0x4C
-    0D39C~0D3A5 x+0x28C~x+0x295: 变量@  0x4D
-    0D3A6~0D3AF x+0x296~x+0x29F: 变量@  0x4E
-    0D3B0~0D3B9 x+0x2A0~x+0x2A9: 变量@  0x4F
+D392~D521：历史记录 长度400bytes (每一条都会以0x23结尾)
+    D392~D39B: 变量@  0x4C
+    D39C~D3A5: 变量@  0x4D
+    D3A6~D3AF: 变量@  0x4E
+    D3B0~D3B9: 变量@  0x4F
 
-0DBE7 x+0xAD7  数学模式下输入区内容的长度（即二进制表示的字节数）
-0DC02~0DC0B x+0xAF2~x+0xAFB: 变量$ 0x24 长度10bytes
-0DDD4 x+0xCC4  screen buffer (?)
-0E3D4 x+0x12C4 screen buffer (?)
+DBE7         数学模式下输入区内容的长度（即二进制表示的字节数）
+DC02~DC0B    变量$ 0x24 长度10bytes
+0DDD4        screen buffer (?)
+0E3D4        screen buffer (?)
