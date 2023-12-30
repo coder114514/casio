@@ -5,6 +5,8 @@ ROM 第2段位于 [SimU8.dll+16CE88]+10000
 ROM 第3段位于 [SimU8.dll+16CE88]+20000
 RAM 位于 [SimU8.dll+16CE6C]
 
+ROM 每一段是 64KiB，RAM 也是 64KiB
+
 RAM 有效部分为 D000-FFFF
 
 RAM地址       作用

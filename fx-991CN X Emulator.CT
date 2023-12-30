@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="28">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>872</ID>
+      <Description>"模拟器"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>873</ID>
+          <Description>"ROM Segment 0 起始位置 "</Description>
+          <LastState Value="02DC0048" RealAddress="722BCE50"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SimU8.dll+16CE50</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>874</ID>
+          <Description>"ROM Segment 1-3 起始位置"</Description>
+          <LastState Value="04FC1020" RealAddress="722BCE88"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SimU8.dll+16CE88</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>875</ID>
+          <Description>"RAM 起始位置"</Description>
+          <LastState Value="02DD0050" RealAddress="722BCE6C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SimU8.dll+16CE6C</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>869</ID>
+      <Description>"ROM Segment 0 64KiB"</Description>
+      <LastState Value="00 F0 EE 95 F0 95 60 00 DC 95 DC 95 DC 95 DC 95" RealAddress="02DC0048"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>16</ByteLength>
+      <Address>SimU8.dll+16CE50</Address>
+      <Offsets>
+        <Offset>0</Offset>
+      </Offsets>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>864</ID>
+          <Description>"sin text"</Description>
+          <LastState RealAddress="02DC2760"/>
+          <VariableType>String</VariableType>
+          <Length>3</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>+2718</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>858</ID>
+          <Description>"diagnostic text"</Description>
+          <LastState RealAddress="02DC4E75"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>String</VariableType>
+          <Length>100</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>+4E2D</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>866</ID>
+      <Description>"ROM Segment 1 64KiB"</Description>
+      <LastState Value="CE F8 5E FE 1A AE 9C E1 9C E1 6E F8 5E FC 6E F4" RealAddress="04FC1020"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>16</ByteLength>
+      <Address>SimU8.dll+16CE88</Address>
+      <Offsets>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>867</ID>
+      <Description>"ROM Segment 2 64KiB"</Description>
+      <LastState Value="CE F8 4E F9 5E FC 5E F4 4E F4 A5 FE C5 F0 A8 E0" RealAddress="04FD1020"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>16</ByteLength>
+      <Address>SimU8.dll+16CE88</Address>
+      <Offsets>
+        <Offset>10000</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>679</ID>
+      <Description>"ROM Segment 3 64KiB"</Description>
+      <LastState Value="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" RealAddress="04FE1020"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>16</ByteLength>
+      <Address>SimU8.dll+16CE88</Address>
+      <Offsets>
+        <Offset>20000</Offset>
+      </Offsets>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>681</ID>
+          <Description>"型号"</Description>
+          <LastState RealAddress="04FF100E"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>String</VariableType>
+          <Length>10</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>+FFEE</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>870</ID>
+      <Description>"RAM 64KiB 有效部分为 D000-FFFF"</Description>
+      <LastState Value="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" RealAddress="02DD0050"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>16</ByteLength>
+      <Address>SimU8.dll+16CE6C</Address>
+      <Offsets>
+        <Offset>0</Offset>
+      </Offsets>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"modifier"</Description>
+          <LastState Value="00" RealAddress="02DDD160"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D110</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"模式"</Description>
+          <LastState Value="C1" RealAddress="02DDD161"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D111</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>868</ID>
+          <Description>"子模式"</Description>
+          <LastState Value="00" RealAddress="02DDD162"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D112</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>871</ID>
+          <Description>"当前屏幕 00,01,02=计算,模式选择,设置"</Description>
+          <LastState Value="00" RealAddress="02DDD163"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+D113</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
