@@ -121,7 +121,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>869</ID>
-      <Description>"ROM Segment 0 64KiB"</Description>
+      <Description>"Segment 0"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -155,7 +155,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>866</ID>
-      <Description>"ROM Segment 1 64KiB"</Description>
+      <Description>"Segment 1"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -166,7 +166,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>867</ID>
-      <Description>"ROM Segment 2 64KiB"</Description>
+      <Description>"Segment 2"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -177,7 +177,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>679</ID>
-      <Description>"ROM Segment 3 64KiB"</Description>
+      <Description>"Segment 3"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -201,7 +201,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>870</ID>
-      <Description>"RAM Segment 4? 64KiB 有效部分为 D000-FFFF"</Description>
+      <Description>"RAM 用到的部分为 D000-FFFF"</Description>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>16</ByteLength>
@@ -212,14 +212,14 @@
       <CheatEntries>
         <CheatEntry>
           <ID>1</ID>
-          <Description>"modifier"</Description>
+          <Description>"modifier 04,08,00=shift按下,alpha按下,都没按下"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D110</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>2</ID>
-          <Description>"模式"</Description>
+          <Description>"模式 C0,C1,C4,02=数学68,COMP,CMPLX,BASE"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D111</Address>
@@ -240,35 +240,35 @@
         </CheatEntry>
         <CheatEntry>
           <ID>876</ID>
-          <Description>"输入模式"</Description>
+          <Description>"输入模式 normal1, stat/table12, matrix13, vector14, eqn15, ratio17, ineq18 (?)"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D114</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>877</ID>
-          <Description>"显示格式"</Description>
+          <Description>"显示格式 8,9,0,4=位数,科学,常规1,常规2"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D11A</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>897</ID>
-          <Description>"显示格式相关"</Description>
+          <Description>"显示格式位数/有效数字或者表示是常规1还是常规2 范围0-9"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D11B</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>898</ID>
-          <Description>"角度单位"</Description>
+          <Description>"角度单位 4,5,6=角度,弧度,百分度"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D11D</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>899</ID>
-          <Description>"是否是数学输入"</Description>
+          <Description>"是否是数学输入 (MathI)"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D11E</Address>
@@ -289,21 +289,21 @@
         </CheatEntry>
         <CheatEntry>
           <ID>902</ID>
-          <Description>"current_screen_buffer"</Description>
+          <Description>"current_screen_buffer # ==0 -&gt; E3D4, !=0 -&gt; DDD4. Affects many drawing functions (?)"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D139</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>903</ID>
-          <Description>"光标位置"</Description>
+          <Description>"光标位置(0~255)，插入模式下，光标在对应字符的左侧"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D155</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>904</ID>
-          <Description>"输入区"</Description>
+          <Description>"输入区 从输入区第189字节开始, 光标变宽"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Array of byte</VariableType>
           <ByteLength>199</ByteLength>
@@ -311,14 +311,14 @@
         </CheatEntry>
         <CheatEntry>
           <ID>905</ID>
-          <Description>"输入区 undo区 seperator"</Description>
+          <Description>"输入区 缓存区 seperator 正常为 00"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D247</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>906</ID>
-          <Description>"undo区"</Description>
+          <Description>"缓存区 每次按下=后输入区会被复制到这里，没有输入时按←/→复制到输入区"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Array of byte</VariableType>
           <ByteLength>199</ByteLength>
@@ -326,30 +326,28 @@
         </CheatEntry>
         <CheatEntry>
           <ID>907</ID>
-          <Description>"undo区 结束"</Description>
+          <Description>"缓存区 结束 正常为 00"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>Byte</VariableType>
           <Address>+D30F</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>908</ID>
-          <Description>"不稳定字符"</Description>
+          <Description>"随机数种子前半部分"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>8 Bytes</VariableType>
+          <Address>+D310</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>910</ID>
+          <Description>"不稳定字符 随机数种子后半部分"</Description>
           <ShowAsHex>1</ShowAsHex>
           <VariableType>2 Bytes</VariableType>
           <Address>+D318</Address>
         </CheatEntry>
         <CheatEntry>
-          <ID>895</ID>
-          <Description>"历史记录"</Description>
-          <ShowAsHex>1</ShowAsHex>
-          <VariableType>Array of byte</VariableType>
-          <ByteLength>400</ByteLength>
-          <Address>+D392</Address>
-        </CheatEntry>
-        <CheatEntry>
           <ID>878</ID>
-          <Description>"变量 (D31A-D391,D392-D3B9,DC02)"</Description>
-          <Options moManualExpandCollapse="1"/>
+          <Description>"变量 0x4A~0x4F"</Description>
           <LastState Value="" RealAddress="00000000"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -529,18 +527,54 @@
                 <Offset>D3B0</Offset>
               </Offsets>
             </CheatEntry>
-            <CheatEntry>
-              <ID>896</ID>
-              <Description>"$"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>SimU8.dll+16CE6C</Address>
-              <Offsets>
-                <Offset>DC02</Offset>
-              </Offsets>
-            </CheatEntry>
           </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>895</ID>
+          <Description>"历史记录"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>400</ByteLength>
+          <Address>+D392</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>909</ID>
+          <Description>"撤销区"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>200</ByteLength>
+          <Address>+D522</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>911</ID>
+          <Description>"数学模式下输入区内容的长度（即二进制表示的字节数）"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>+DBE7</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>896</ID>
+          <Description>"$"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>10</ByteLength>
+          <Address>+DC02</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>912</ID>
+          <Description>"screen buffer"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>384</ByteLength>
+          <Address>+DDD4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>913</ID>
+          <Description>"screen buffer"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Array of byte</VariableType>
+          <ByteLength>384</ByteLength>
+          <Address>+E3D4</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>612</ID>
