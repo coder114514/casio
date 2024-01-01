@@ -38,7 +38,7 @@
     <CheatEntry>
       <ID>505</ID>
       <Description>"Segment 1 to 3 pointer"</Description>
-      <LastState Value="" RealAddress="71DCCE88"/>
+      <LastState Value="" RealAddress="7284CE88"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>0</ByteLength>
@@ -95,7 +95,7 @@
     <CheatEntry>
       <ID>1</ID>
       <Description>"Data memory space"</Description>
-      <LastState Value="" RealAddress="71DCCE6C"/>
+      <LastState Value="" RealAddress="7284CE6C"/>
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>0</ByteLength>
@@ -203,7 +203,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>738</ID>
-              <Description>"QR code version"</Description>
+              <Description>"[??] QR code version"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Byte</VariableType>
               <Address>+D12E</Address>
@@ -252,11 +252,12 @@
             </CheatEntry>
             <CheatEntry>
               <ID>3</ID>
-              <Description>"输入区"</Description>
+              <Description>"输入区 199字节"</Description>
               <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000D180"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>200</ByteLength>
+              <ByteLength>0</ByteLength>
               <Address>+D180</Address>
               <CheatEntries>
                 <CheatEntry>
@@ -319,11 +320,12 @@
             </CheatEntry>
             <CheatEntry>
               <ID>695</ID>
-              <Description>"缓存区 / f formula [mode=table]"</Description>
+              <Description>"缓存区 / f formula [mode=table] 199字节"</Description>
               <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000D248"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>200</ByteLength>
+              <ByteLength>0</ByteLength>
               <Address>+D248</Address>
               <CheatEntries>
                 <CheatEntry>
@@ -481,7 +483,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>712</ID>
-              <Description>"PreAns &lt;4A&gt;"</Description>
+              <Description>"PreAns"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
@@ -489,55 +491,67 @@
             </CheatEntry>
             <CheatEntry>
               <ID>713</ID>
-              <Description>"Z &lt;4B&gt;"</Description>
+              <Description>"@ &lt;4B&gt;"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
               <Address>+D388</Address>
             </CheatEntry>
             <CheatEntry>
-              <ID>859</ID>
-              <Description>"@ &lt;4C&gt; 0x4C~0x4F与历史记录重叠"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D392</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>772</ID>
-              <Description>"@ &lt;4D&gt;"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D39C</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>774</ID>
-              <Description>"@ &lt;4E&gt;"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D3A6</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>773</ID>
-              <Description>"@ &lt;4F&gt;"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D3B0</Address>
-            </CheatEntry>
-            <CheatEntry>
               <ID>720</ID>
-              <Description>"[OVERLAP] 历史记录 400字节"</Description>
+              <Description>"历史记录 400字节"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000D392"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>400</ByteLength>
+              <ByteLength>0</ByteLength>
               <Address>+D392</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>859</ID>
+                  <Description>"@ &lt;4C&gt;"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>772</ID>
+                  <Description>"@ &lt;4D&gt;"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+A</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>774</ID>
+                  <Description>"@ &lt;4E&gt;"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+A+A</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>773</ID>
+                  <Description>"@ &lt;4F&gt;"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+A+A+A</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>909</ID>
+                  <Description>"..."</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>360</ByteLength>
+                  <Address>+A+A+A+A</Address>
+                </CheatEntry>
+              </CheatEntries>
             </CheatEntry>
             <CheatEntry>
               <ID>752</ID>
-              <Description>"[OVERLAP] 开始值 [mode=table]"</Description>
+              <Description>"[OVERLAP hist] 开始值 [mode=table]"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
@@ -545,7 +559,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>753</ID>
-              <Description>"终止值 [mode=table]"</Description>
+              <Description>"[OVERLAP hist] 终止值 [mode=table]"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
@@ -553,7 +567,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>905</ID>
-              <Description>"步长 [mode=table]"</Description>
+              <Description>"[OVERLAP hist] 步长 [mode=table]"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
@@ -561,39 +575,51 @@
             </CheatEntry>
             <CheatEntry>
               <ID>715</ID>
-              <Description>"Value list start [mode=table,stat]"</Description>
+              <Description>"[OVERLAP hist,undo...] 数值列表 [mode=table,stat] table最多30项(到D52B),stat最多160项(到DA3F)"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000D400"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
+              <ByteLength>0</ByteLength>
               <Address>+D400</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>716</ID>
-              <Description>"item 2"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D40A</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>717</ID>
-              <Description>"item 3"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D414</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>718</ID>
-              <Description>"item 4 ..."</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D41E</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>716</ID>
+                  <Description>"item 1"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>908</ID>
+                  <Description>"item 2"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+A</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>717</ID>
+                  <Description>"item 3"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+14</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>718</ID>
+                  <Description>"item 4"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>10</ByteLength>
+                  <Address>+1E</Address>
+                </CheatEntry>
+              </CheatEntries>
             </CheatEntry>
             <CheatEntry>
               <ID>866</ID>
-              <Description>"[OVERLAP] 撤销区"</Description>
+              <Description>"撤销区"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>200</ByteLength>
@@ -605,7 +631,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D31A</Address>
+              <Address>+D612</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>750</ID>
@@ -613,7 +639,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D324</Address>
+              <Address>+D61C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>749</ID>
@@ -621,7 +647,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D32E</Address>
+              <Address>+D626</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>748</ID>
@@ -629,7 +655,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D338</Address>
+              <Address>+D630</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>747</ID>
@@ -637,7 +663,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D342</Address>
+              <Address>+D63A</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>746</ID>
@@ -645,7 +671,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D34C</Address>
+              <Address>+D644</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>745</ID>
@@ -653,7 +679,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D356</Address>
+              <Address>+D64E</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>744</ID>
@@ -661,7 +687,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D360</Address>
+              <Address>+D658</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>743</ID>
@@ -669,7 +695,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D36A</Address>
+              <Address>+D662</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>742</ID>
@@ -677,7 +703,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D374</Address>
+              <Address>+D66C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>741</ID>
@@ -685,31 +711,23 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D37E</Address>
+              <Address>+D676</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>860</ID>
-              <Description>"Z 虚部"</Description>
+              <Description>"@ &lt;4B&gt; 虚部"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
-              <Address>+2F8+D388</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>865</ID>
-              <Description>"item 90 (last)"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>10</ByteLength>
-              <Address>+D400+A*59</Address>
+              <Address>+D680</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>721</ID>
-              <Description>"Undo buffer [mode=table]"</Description>
+              <Description>"撤销区 [mode=table]"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>200</ByteLength>
-              <Address>+d784</Address>
+              <Address>+D784</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>867</ID>
@@ -717,7 +735,7 @@
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>200</ByteLength>
-              <Address>+d784+c8</Address>
+              <Address>+D84C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>775</ID>
@@ -742,32 +760,88 @@
               <Address>+DC02</Address>
             </CheatEntry>
             <CheatEntry>
-              <ID>777</ID>
-              <Description>"screen buffer (每行24字节)-第1行(状态灯)"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <VariableType>Array of byte</VariableType>
-              <ByteLength>24</ByteLength>
-              <Address>+DDD4</Address>
-            </CheatEntry>
-            <CheatEntry>
               <ID>861</ID>
-              <Description>""$" / "r" 虚部 [?]"</Description>
+              <Description>"[OVERLAP screen buf] "$" / "r" 虚部"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
               <Address>+2F8+DC02</Address>
             </CheatEntry>
             <CheatEntry>
-              <ID>778</ID>
-              <Description>"screen buffer 2 (模式选择界面)-第1行"</Description>
+              <ID>777</ID>
+              <Description>"screen buffer 1 每行24字节,共64行"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000DDD4"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>24</ByteLength>
+              <ByteLength>0</ByteLength>
+              <Address>+DDD4</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>910</ID>
+                  <Description>"第0行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>911</ID>
+                  <Description>"第1行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+18</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>916</ID>
+                  <Description>"第2行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+18*2</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>778</ID>
+              <Description>"screen buffer 2 每行24字节,共64行"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000E3D4"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>0</ByteLength>
               <Address>+E3D4</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>914</ID>
+                  <Description>"第0行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>915</ID>
+                  <Description>"第1行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+18</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>918</ID>
+                  <Description>"第2行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+18*2</Address>
+                </CheatEntry>
+              </CheatEntries>
             </CheatEntry>
             <CheatEntry>
               <ID>856</ID>
-              <Description>"End address for reset (f_26606)"</Description>
+              <Description>"[??] End address for reset (f_26606)"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>24</ByteLength>
@@ -775,7 +849,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>855</ID>
-              <Description>"z [overflow 20re/66im mode] [?]"</Description>
+              <Description>"[??] z [overflow 20re/66im mode]"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
               <ByteLength>10</ByteLength>
@@ -783,7 +857,7 @@
             </CheatEntry>
             <CheatEntry>
               <ID>851</ID>
-              <Description>"F000 - 204d address"</Description>
+              <Description>"[??] F000 - 204d address"</Description>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>2 Bytes</VariableType>
               <Address>+EF34</Address>
@@ -797,11 +871,39 @@
             </CheatEntry>
             <CheatEntry>
               <ID>776</ID>
-              <Description>"屏幕(每行32字节,实际使用前24字节,共64行)-第1行(状态灯)"</Description>
+              <Description>"屏幕 每行32字节,实际使用前24字节,共64行"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="0000F800"/>
               <ShowAsHex>1</ShowAsHex>
               <VariableType>Array of byte</VariableType>
-              <ByteLength>24</ByteLength>
+              <ByteLength>0</ByteLength>
               <Address>+F800</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>912</ID>
+                  <Description>"第0行 状态灯"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>913</ID>
+                  <Description>"第1行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>25</ByteLength>
+                  <Address>+20</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>917</ID>
+                  <Description>"第2行"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>24</ByteLength>
+                  <Address>+20*2</Address>
+                </CheatEntry>
+              </CheatEntries>
             </CheatEntry>
           </CheatEntries>
         </CheatEntry>
@@ -830,80 +932,101 @@
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
-      <ID>694</ID>
-      <Description>"Currently executing cmd first word"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CE50</Address>
-      <Offsets>
-        <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1))</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>693</ID>
-      <Description>"Currently executing cmd second word if any"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CE50</Address>
-      <Offsets>
-        <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1)) + 2</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>692</ID>
-      <Description>"ROM window size"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>4 Bytes</VariableType>
-      <Address>SimU8.dll+16CE7c</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>690</ID>
-      <Description>"CSR,LCSR 各占半字节"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>Byte</VariableType>
-      <Address>SimU8.dll+16CEBE</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>688</ID>
-      <Description>"PC &lt;write@ SimU8engine.dll+1758&gt;"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CEB4</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>687</ID>
-      <Description>"LR"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CEB6</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>685</ID>
-      <Description>"PSW"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>Byte</VariableType>
-      <Address>SimU8.dll+16CEC3</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>684</ID>
-      <Description>"SP push -&gt; decrease"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CEC8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>683</ID>
-      <Description>"EA"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>2 Bytes</VariableType>
-      <Address>SimU8.dll+16CECA</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>682</ID>
-      <Description>"DSR?"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>Byte</VariableType>
-      <Address>SimU8.dll+16CECC</Address>
+      <ID>907</ID>
+      <Description>"模拟器"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>694</ID>
+          <Description>"Currently executing cmd first word"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CE50</Address>
+          <Offsets>
+            <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1))</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>693</ID>
+          <Description>"Currently executing cmd second word if any"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CE50</Address>
+          <Offsets>
+            <Offset>(readInteger "SimU8.dll+16CEB4" &amp; 0xFFFF) + (0 == readInteger "SimU8.dll+16CEBE" and 0 or readInteger "SimU8.dll+16CE88" - readInteger "SimU8.dll+16CE50" + 0x10000 * (readInteger "SimU8.dll+16CEBE" - 1)) + 2</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>692</ID>
+          <Description>"ROM window size"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SimU8.dll+16CE7c</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>690</ID>
+          <Description>"CSR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Binary</VariableType>
+          <BitStart>0</BitStart>
+          <BitLength>4</BitLength>
+          <ShowAsBinary>0</ShowAsBinary>
+          <Address>SimU8.dll+16CEBE</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>688</ID>
+          <Description>"PC &lt;write@ SimU8engine.dll+1758&gt;"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>906</ID>
+          <Description>"LCSR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Binary</VariableType>
+          <BitStart>4</BitStart>
+          <BitLength>4</BitLength>
+          <ShowAsBinary>0</ShowAsBinary>
+          <Address>SimU8.dll+16CEBE</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>687</ID>
+          <Description>"LR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEB6</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>685</ID>
+          <Description>"PSW"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>SimU8.dll+16CEC3</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>684</ID>
+          <Description>"SP push -&gt; decrease"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CEC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>683</ID>
+          <Description>"EA"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>SimU8.dll+16CECA</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>682</ID>
+          <Description>"[??] DSR"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>SimU8.dll+16CECC</Address>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
