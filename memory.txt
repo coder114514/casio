@@ -1,9 +1,9 @@
 官方模拟器上
-内存第0段(ROM)位于 [SimU8.dll+16CE50]
-内存第1段(ROM)位于 [SimU8.dll+16CE88]
-内存第2段(ROM)位于 [SimU8.dll+16CE88]+10000
-内存第3段(ROM)位于 [SimU8.dll+16CE88]+20000
-内存第4段(RAM)位于 [SimU8.dll+16CE6C]
+ROM第0段位于 [SimU8.dll+16CE50]
+ROM第1段位于 [SimU8.dll+16CE88]
+ROM第2段位于 [SimU8.dll+16CE88]+10000
+ROM第3段位于 [SimU8.dll+16CE88]+20000
+RAM 位于 [SimU8.dll+16CE6C] (只用了 segment 0 的内存)
 每一段内存都是 64KiB
 RAM 用到的部分为 D000-FFFF
 
@@ -13,6 +13,7 @@ LCSR 位于 SimU8.dll+16CEBF (半字节
 LR   位于 SimU8.dll+16CEB6 (一字节
 SP   位于 SimU8.dll+16CEC8 (两字节
 
+D10E       last function pressed
 D110       04,08,00=shift按下,alpha按下,都没按下
 D111       当前模式 C0,C1,C4,02=数学68,COMP,CMPLX,BASE
 D112       子模式

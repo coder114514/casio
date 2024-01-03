@@ -1,0 +1,65 @@
+0:0000~0:00FF 向量表 255 B
+0:0100~0:7E7D 数据   31.37 KiB
+0:7E7E~0:FBFF 代码   31.38 KiB
+1:0000~1:FFFD 代码   64.00 KiB
+2:0000~2:BEED 代码   47.73 KiB
+3:FFC0~3:FFE7 数据   39 B
+
+3:FFEE~3:FFFF 型号 18 B
+43 59 2D 32 33 39 43 20 A8 04 00 00 ...
+C  Y  -  2  3  9  C     ⁸  ?? -- 计算器二级字符表
+C  Y  -  2  3  9  C     ?? ?? -- ASCII 码
+=======================================================================================
+CPU 对 POP PC 有特殊处理，POP PC 其实相当于POP两次 POP PC, POP CSR, 4个字节     PUSH/POP LR 也是类似的
+PUSH 和 POP 永远是2字节为一单位
+=======================================================================================
+_strcpy_nn 0:D070
+00D070   6E F8              PUSH    XR8
+00D072   5E FC              PUSH    ER12
+
+00D074   05 F8              MOV     ER8, ER0 //保留er0
+//之后 [er0]...<-[er2]...
+00D076   25 FA              MOV     ER10, ER2
+00D078   05 FC              MOV     ER12, ER0
+
+//loop until R0==0, [ER12]<-[ER10]
+00D07A   A0 90              L       R0, [ER10] //R0<-[ER10]
+00D07C   C1 90              ST      R0, [ER12] //[ER12]<-R0
+00D07E   81 EA              ADD     ER10, #1
+00D080   81 EC              ADD     ER12, #1
+//if R0!=0, jump back
+00D082   00 80              MOV     R0, R0
+00D084   FA C8              BC      NE, 0D07Ah
+
+
+00D086   85 F0              MOV     ER0, ER8
+
+00D088   1E FC              POP     ER12
+00D08A   2E F8              POP     XR8
+00D08C   1F FE              RT
+
+分析：
+出现的寄存器：er0,er2,er8,er10,er12 运行后都不变
+er0,er2作为输入参数, er2表示src, er0表示dst，没有返回值
+
+void _strcpy_nn(char* src:er2, char* dst:er0)
+
+=====================================================================================
+smart_strcpy_nn 2:03C2
+0203C2   CE F8              PUSH    LR
+0203C4   05 F0              MOV     ER0, ER0
+0203C6   04 C9              BC      EQ, 203D0h (if er0==0, return)
+0203C8   25 F2              MOV     ER2, ER2
+0203CA   03 C9              BC      EQ, 203D2h (if er2==0, jmp br2)
+0203CC   01 F0 70 D0        BL      00h:0D070h (er0!=0,er2!=0)
+0203D0   8E F2              POP     PC
+br2:
+0203D2   01 92              ST      R2, [ER0] //er2==0,r2==0
+0203D4   8E F2              POP     PC
+
+分析：
+void smart_strcpy_nn(char* src:er2, char* dst:er0)
+可以输入空指针
+当 dst 为 NULL, 什么都不做
+当 src 为 NULL, 把 dst 处字符串设为 ""
+都不是 NULL, 把 src 处字符串复制到 dst 处
