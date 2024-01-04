@@ -42,7 +42,7 @@ _strcpy_nn 0:D070
 出现的寄存器：er0,er2,er8,er10,er12 运行后都不变
 er0,er2作为输入参数, er2表示src, er0表示dst，没有返回值
 
-void _strcpy_nn(char* src:er2, char* dst:er0)
+void _strcpy_nn(byte* src:er2, byte* dst:er0)
 
 =====================================================================================
 smart_strcpy_nn 2:03C2
@@ -58,8 +58,118 @@ br2:
 0203D4   8E F2              POP     PC
 
 分析：
-void smart_strcpy_nn(char* src:er2, char* dst:er0)
+void smart_strcpy_nn(byte* src:er2, byte* dst:er0)
 可以输入空指针
 当 dst 为 NULL, 什么都不做
 当 src 为 NULL, 把 dst 处字符串设为 ""
 都不是 NULL, 把 src 处字符串复制到 dst 处
+
+=====================================================================================
+hex_byte  2:2492
+022492   00 81              MOV     R1, R0
+022494   0F 21              AND     R1, #15
+022496   0A 71              CMP     R1, #10
+022498   02 C0              BC      GE, 2249Eh
+02249A   30 11              ADD     R1, #48
+02249C   01 CE              BC      AL, 224A0h
+02249E   37 11              ADD     R1, #55
+
+0224A0   4C 90              SRL     R0, #4
+0224A2   0A 70              CMP     R0, #10
+0224A4   02 C0              BC      GE, 224AAh
+0224A6   30 10              ADD     R0, #48
+0224A8   01 CE              BC      AL, 224ACh
+0224AA   37 10              ADD     R0, #55
+0224AC   1F FE              RT
+出现的寄存器: R0,R1
+
+输入:R0  输出:ER0
+
+R1=R0 & 0x0F
+if(R1>=#10) R1+=0x37 //A->0x41,B->0x42...
+else        R1+=0x30 //0->0x30,1->0x31...
+R0>>=4
+if(R0>=#10) R0+=0x37
+else        R0+=0x30
+
+把R0转换成字符串存在ER0中
+输入R0为0xAB时，输出ER0为"AB"
+
+word hex_byte(byte in:r0):er0
+
+
+=====================================================================================
+diag_calc_checksum 2:2392
+022392   CE F8              PUSH    LR
+022394   7E F8              PUSH    QR8      //R8,R9,ER10,ER12,ER14
+022396   00 E8              MOV     ER8, #0  //R8,R9<-0,0
+022398   01 00              MOV     R0, #1
+02239A   11 90 04 F0        ST      R0, 0F004h //#1->[F004]
+// 现在 R8,R9 都是 0
+
+////seg0  0000~FBFF
+02239E   00 0E              MOV     R14, #0
+0223A0   FC 0F              MOV     R15, #252  //0xFC00=#64512->er14
+0223A2   00 EA              MOV     ER10, #0
+0223A4   AA F0              LEA     [ER10] //0->EA
+//loop
+0223A6   05 E3              DSR<-   005h
+0223A8   52 9A              L       ER10, [EA+] //EA move 2bytes
+0223AA   8F FE              NOP
+0223AC   A8 88              SUB     R8, R10
+0223AE   B9 89              SUBC    R9, R11
+0223B0   FE EE              ADD     ER14, #-2
+0223B2   F9 C8              BC      NE, 223A6h
+
+////seg1 0000~FFFF
+0223B4   00 EE              MOV     ER14, #0 //0x10000
+0223B6   00 EA              MOV     ER10, #0
+0223B8   AA F0              LEA     [ER10]
+//loop
+0223BA   01 E3              DSR<-   001h
+0223BC   52 9A              L       ER10, [EA+]
+0223BE   8F FE              NOP
+0223C0   A8 88              SUB     R8, R10
+0223C2   B9 89              SUBC    R9, R11
+0223C4   FE EE              ADD     ER14, #-2
+0223C6   F9 C8              BC      NE, 223BAh
+
+////seg2 0000~FFFF
+0223C8   00 EE              MOV     ER14, #0
+0223CA   00 EA              MOV     ER10, #0
+0223CC   AA F0              LEA     [ER10]
+//loop
+0223CE   02 E3              DSR<-   002h
+0223D0   52 9A              L       ER10, [EA+]
+0223D2   8F FE              NOP
+0223D4   A8 88              SUB     R8, R10
+0223D6   B9 89              SUBC    R9, R11
+0223D8   FE EE              ADD     ER14, #-2
+0223DA   F9 C8              BC      NE, 223CEh
+
+////seg3 0000~FFF5
+0223DC   F6 0E              MOV     R14, #246
+0223DE   FF 0F              MOV     R15, #255 //ER14<-0xFFF6
+0223E0   00 EA              MOV     ER10, #0
+0223E2   AA F0              LEA     [ER10]
+//loop
+0223E4   03 E3              DSR<-   003h
+0223E6   52 9A              L       ER10, [EA+]
+0223E8   8F FE              NOP
+0223EA   A8 88              SUB     R8, R10
+0223EC   B9 89              SUBC    R9, R11
+0223EE   FE EE              ADD     ER14, #-2
+0223F0   F9 C8              BC      NE, 223E4h
+
+0223F2   90 80              MOV     R0, R9
+0223F4   01 F2 92 24        BL      02h:02492h
+0223F8   05 F4              MOV     ER4, ER0
+0223FA   80 80              MOV     R0, R8
+0223FC   01 F2 92 24        BL      02h:02492h
+022400   05 F6              MOV     ER6, ER0
+022402   85 F0              MOV     ER0, ER8
+022404   3E F8              POP     QR8
+022406   8E F2              POP     PC
+
+输入：无
+输出：ER4,ER6,ER0  ER0为checksum数值
