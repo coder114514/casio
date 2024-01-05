@@ -1,70 +1,55 @@
-//////////////////////////////////// vector table begins
-000000   00 F0                F000 initial SP
+//////////////////////////////////// vector table
+000000   00 F0              F000   initial SP
 000002   FE 93              0:93FE reset routine entry point for BRK with ELEVEL=2,3 or externel reset input
 000004   00 94              0:9400 reset routine entry point for BRK with ELEVEL=0,1
-000006   60 00
-000008   EC 93
-00000A   EC 93
-00000C   EC 93
-00000E   EC 93
-000010   EC 93
-000012   EE 93
-000014   EC 93
-000016   EC 93
-000018   EC 93
-00001A   EC 93
-00001C   EC 93
-00001E   EC 93
-000020   EC 93
-000022   EC 93
-000024   EC 93
-000026   EC 93
-000028   EC 93
-00002A   EC 93
-00002C   02 1B              ADD     R11, #2
-00002E   00 00              MOV     R0, #0
-000030   52 1A              ADD     R10, #82
-000032   80 35              OR      R5, #128
-000034   22 1B              ADD     R11, #34
-000036   52 0B              MOV     R11, #82
-000038   AE 67              ADDC    R7, #174
-00003A   F8 67              ADDC    R7, #248
-00003C   EA 76              CMP     R6, #234
-00003E   20 64              ADDC    R4, #32
-000040   88 64              ADDC    R4, #136
-000042   08 65              ADDC    R5, #8
-000044   56 5F              CMPC    R15, #86
-000046   A4 5C              CMPC    R12, #164
-000048   98 5D              CMPC    R13, #152
-00004A   BC 5A              CMPC    R10, #188
-00004C   60 5B              CMPC    R11, #96
-00004E   C0 58              CMPC    R8, #192
-000050   BC 59              CMPC    R9, #188
-000052   DA 55              CMPC    R5, #218
-000054   F0 57              CMPC    R7, #240
-000056   BC 53              CMPC    R3, #188
-000058   6A 5B              CMPC    R11, #106
-00005A   C6 58              CMPC    R8, #198
-00005C   C6 59              CMPC    R9, #198
-00005E   E4 55              CMPC    R5, #228
-000060   FA 57              CMPC    R7, #250
-000062   C6 53              CMPC    R3, #198
-000064   38 55              CMPC    R5, #56
-000066   B8 52              CMPC    R2, #184
-000068   46 53              CMPC    R3, #70
-00006A   A6 50              CMPC    R0, #166
-00006C   04 58              CMPC    R8, #4
-00006E   D4 53              CMPC    R3, #212
-000070   3E 55              CMPC    R5, #62
-000072   C2 52              CMPC    R2, #194
-000074   4E 53              CMPC    R3, #78
-000076   AC 50              CMPC    R0, #172
-000078   1E 51              CMPC    R1, #30
-00007A   F0 4E              XOR     R14, #240
-00007C   B8 4F              XOR     R15, #184
-00007E   7E 4A              XOR     R10, #126
-000080   FC 49              XOR     R9, #252
-000082   06 4F              XOR     R15, #6
+000006   60 00              NMICE interrupt
+000008   EC 93              NMI interrupt plus maskable interrupts
+......   .. ..              ...
+00002A   EC 93              ...
+00002C   02 1B              ...
+00002E   00 00              ...
+000030   52 1A              ...
+000032   80 35              ...
+000034   22 1B              ...
+000036   52 0B              ...
+000038   AE 67              ...
+00003A   F8 67              ...
+00003C   EA 76              ...
+00003E   20 64              ...
+000040   88 64              ...
+000042   08 65              ...
+000044   56 5F              ...
+000046   A4 5C              ...
+000048   98 5D              ...
+00004A   BC 5A              ...
+00004C   60 5B              ...
+00004E   C0 58              ...
+000050   BC 59              ...
+000052   DA 55              ...
+000054   F0 57              ...
+000056   BC 53              ...
+000058   6A 5B              ...
+00005A   C6 58              ...
+00005C   C6 59              ...
+00005E   E4 55              ...
+000060   FA 57              ...
+000062   C6 53              ...
+000064   38 55              ...
+000066   B8 52              ...
+000068   46 53              ...
+00006A   A6 50              ...
+00006C   04 58              ...
+00006E   D4 53              ...
+000070   3E 55              ...
+000072   C2 52              ...
+000074   4E 53              ...
+000076   AC 50              ...
+000078   1E 51              ...
+00007A   F0 4E              ...
+00007C   B8 4F              ...
+00007E   7E 4A              NMI interrupt plus maskable interrupts
+000080   FC 49              SWI #0
+000082   06 4F              SWI #1
 000084   F6 4D              XOR     R13, #246
 000086   C0 3B              OR      R11, #192
 000088   30 50              CMPC    R0, #48
@@ -125,9 +110,10 @@
 0000F6   E8 0A              MOV     R10, #232
 0000F8   64 19              ADD     R9, #100
 0000FA   EA 57              CMPC    R7, #234
-0000FC   B6 53              CMPC    R3, #182
-0000FE   30 55              CMPC    R5, #48
-////////////////////////////////////  vector table ends, data begins
+0000FC   B6 53              SWI #62
+0000FE   30 55              SWI #63
+//////////////////////////////////// end of vector table
+//////////////////////////////////// data
 000100   B4 52              CMPC    R2, #180
 000102   50 5B              CMPC    R11, #80
 000104   B4 58              CMPC    R8, #180
@@ -15577,7 +15563,8 @@
 007E78   73 75              CMP     R5, #115
 007E7A   6C 74              CMP     R4, #108
 007E7C   3F 00              MOV     R0, #63
-//////////////////////////////////// data ends, code begins here
+//////////////////////////////////// end of data
+//////////////////////////////////// code
 007E7E   CE F8              PUSH    LR
 007E80   00 02              MOV     R2, #0
 007E82   06 03              MOV     R3, #6
@@ -24112,6 +24099,7 @@
 00D068   89 A0 08 00        ST      ER0, 0008h[ER8]
 00D06C   1E F8              POP     ER8
 00D06E   8E F2              POP     PC
+
 00D070   6E F8              PUSH    XR8
 00D072   5E FC              PUSH    ER12
 00D074   05 F8              MOV     ER8, ER0
@@ -24127,6 +24115,7 @@
 00D088   1E FC              POP     ER12
 00D08A   2E F8              POP     XR8
 00D08C   1F FE              RT
+
 00D08E   5E F8              PUSH    ER8
 00D090   05 F8              MOV     ER8, ER0
 00D092   00 E2              MOV     ER2, #0
@@ -55819,6 +55808,7 @@
 0203BA   02 C9              BC      EQ, 203C0h
 0203BC   00 F2 6A 53        B       02h:0536Ah
 0203C0   1F FE              RT
+
 0203C2   CE F8              PUSH    LR
 0203C4   05 F0              MOV     ER0, ER0
 0203C6   04 C9              BC      EQ, 203D0h
@@ -55828,6 +55818,7 @@
 0203D0   8E F2              POP     PC
 0203D2   01 92              ST      R2, [ER0]
 0203D4   8E F2              POP     PC
+
 0203D6   CE F8              PUSH    LR
 0203D8   05 F0              MOV     ER0, ER0
 0203DA   FA C9              BC      EQ, 203D0h
@@ -59257,19 +59248,15 @@
 02238E   57 98              ST      QR8, [EA+]
 022390   1F FE              RT
 
-/////////// calc checksum
 022392   CE F8              PUSH    LR
 022394   7E F8              PUSH    QR8
 022396   00 E8              MOV     ER8, #0
 022398   01 00              MOV     R0, #1
-02239A   11 90 04 F0        ST      R0, 0F004h //#1->[F004]
-
-////seg0
+02239A   11 90 04 F0        ST      R0, 0F004h
 02239E   00 0E              MOV     R14, #0
-0223A0   FC 0F              MOV     R15, #252  //0xFC00->er14
+0223A0   FC 0F              MOV     R15, #252
 0223A2   00 EA              MOV     ER10, #0
-0223A4   AA F0              LEA     [ER10] //0->EA
-//loop
+0223A4   AA F0              LEA     [ER10]
 0223A6   05 E3              DSR<-   005h
 0223A8   52 9A              L       ER10, [EA+]
 0223AA   8F FE              NOP
@@ -59277,12 +59264,9 @@
 0223AE   B9 89              SUBC    R9, R11
 0223B0   FE EE              ADD     ER14, #-2
 0223B2   F9 C8              BC      NE, 223A6h
-
-////seg1
 0223B4   00 EE              MOV     ER14, #0
 0223B6   00 EA              MOV     ER10, #0
 0223B8   AA F0              LEA     [ER10]
-//loop
 0223BA   01 E3              DSR<-   001h
 0223BC   52 9A              L       ER10, [EA+]
 0223BE   8F FE              NOP
@@ -59290,12 +59274,9 @@
 0223C2   B9 89              SUBC    R9, R11
 0223C4   FE EE              ADD     ER14, #-2
 0223C6   F9 C8              BC      NE, 223BAh
-
-////seg2
 0223C8   00 EE              MOV     ER14, #0
 0223CA   00 EA              MOV     ER10, #0
 0223CC   AA F0              LEA     [ER10]
-//loop
 0223CE   02 E3              DSR<-   002h
 0223D0   52 9A              L       ER10, [EA+]
 0223D2   8F FE              NOP
@@ -59303,13 +59284,10 @@
 0223D6   B9 89              SUBC    R9, R11
 0223D8   FE EE              ADD     ER14, #-2
 0223DA   F9 C8              BC      NE, 223CEh
-
-////seg3
 0223DC   F6 0E              MOV     R14, #246
 0223DE   FF 0F              MOV     R15, #255
 0223E0   00 EA              MOV     ER10, #0
 0223E2   AA F0              LEA     [ER10]
-//loop
 0223E4   03 E3              DSR<-   003h
 0223E6   52 9A              L       ER10, [EA+]
 0223E8   8F FE              NOP
@@ -59317,7 +59295,6 @@
 0223EC   B9 89              SUBC    R9, R11
 0223EE   FE EE              ADD     ER14, #-2
 0223F0   F9 C8              BC      NE, 223E4h
-
 0223F2   90 80              MOV     R0, R9
 0223F4   01 F2 92 24        BL      02h:02492h
 0223F8   05 F4              MOV     ER4, ER0
@@ -59327,7 +59304,6 @@
 022402   85 F0              MOV     ER0, ER8
 022404   3E F8              POP     QR8
 022406   8E F2              POP     PC
-/////////// calc checksum ends
 
 022408   CE F8              PUSH    LR
 02240A   7E F8              PUSH    QR8

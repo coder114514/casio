@@ -1,11 +1,10 @@
-0:0000~0:00FF 向量表 255 B
+0:0000~0:00FF 向量表 256 B
 0:0100~0:7E7D 数据   31.37 KiB
 0:7E7E~0:FBFF 代码   31.38 KiB
 1:0000~1:FFFD 代码   64.00 KiB
 2:0000~2:BEED 代码   47.73 KiB
 3:FFC0~3:FFE7 数据   39 B
-
-3:FFEE~3:FFFF 型号 18 B
+3:FFEE~3:FFFF 型号   18 B
 43 59 2D 32 33 39 43 20 A8 04 00 00 ...
 C  Y  -  2  3  9  C     ⁸  ?? -- 计算器二级字符表
 C  Y  -  2  3  9  C     ?? ?? -- ASCII 码
@@ -27,20 +26,15 @@ _strcpy_nn 0:D070
 00D07C   C1 90              ST      R0, [ER12] //[ER12]<-R0
 00D07E   81 EA              ADD     ER10, #1
 00D080   81 EC              ADD     ER12, #1
-//if R0!=0, jump back
 00D082   00 80              MOV     R0, R0
 00D084   FA C8              BC      NE, 0D07Ah
 
-
-00D086   85 F0              MOV     ER0, ER8
-
+00D086   85 F0              MOV     ER0, ER8 //恢复er0
 00D088   1E FC              POP     ER12
 00D08A   2E F8              POP     XR8
 00D08C   1F FE              RT
 
-分析：
-出现的寄存器：er0,er2,er8,er10,er12 运行后都不变
-er0,er2作为输入参数, er2表示src, er0表示dst，没有返回值
+输入: er0,er2  er2表示src, er0表示dst，没有返回值
 
 void _strcpy_nn(byte* src:er2, byte* dst:er0)
 
@@ -57,7 +51,8 @@ br2:
 0203D2   01 92              ST      R2, [ER0] //er2==0,r2==0
 0203D4   8E F2              POP     PC
 
-分析：
+输入: er0,er2  er2表示src, er0表示dst，没有返回值
+
 void smart_strcpy_nn(byte* src:er2, byte* dst:er0)
 可以输入空指针
 当 dst 为 NULL, 什么都不做
@@ -81,7 +76,6 @@ hex_byte  2:2492
 0224A8   01 CE              BC      AL, 224ACh
 0224AA   37 10              ADD     R0, #55
 0224AC   1F FE              RT
-出现的寄存器: R0,R1
 
 输入:R0  输出:ER0
 
@@ -96,7 +90,6 @@ else        R0+=0x30
 输入R0为0xAB时，输出ER0为"AB"
 
 word hex_byte(byte in:r0):er0
-
 
 =====================================================================================
 diag_calc_checksum 2:2392
@@ -172,4 +165,6 @@ diag_calc_checksum 2:2392
 022406   8E F2              POP     PC
 
 输入：无
-输出：ER4,ER6,ER0  ER0为checksum数值
+输出：ER0,XR4  ER0为checksum数值 XR4为ER0的字符串
+
+(word,dword) diag_calc_checksum():(er0,xr4)
