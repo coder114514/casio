@@ -12,6 +12,12 @@ C  Y  -  2  3  9  C     ?? ?? -- ASCII 码
 CPU 对 POP PC 有特殊处理，POP PC 其实相当于POP两次 POP PC, POP CSR, 4个字节     PUSH/POP LR 也是类似的
 PUSH 和 POP 永远是2字节为一单位
 =======================================================================================
+数据类型记号
+ptr    指针 (本身是个word
+byte   1字节
+word   2字节
+dword  4字节
+=======================================================================================
 _strcpy_nn 0:D070
 00D070   6E F8              PUSH    XR8
 00D072   5E FC              PUSH    ER12
@@ -36,7 +42,7 @@ _strcpy_nn 0:D070
 
 输入: er0,er2  er2表示src, er0表示dst，没有返回值
 
-void _strcpy_nn(byte* src:er2, byte* dst:er0)
+void _strcpy_nn(ptr src:er2, ptr dst:er0)
 
 =====================================================================================
 smart_strcpy_nn 2:03C2
@@ -53,7 +59,7 @@ br2:
 
 输入: er0,er2  er2表示src, er0表示dst，没有返回值
 
-void smart_strcpy_nn(byte* src:er2, byte* dst:er0)
+void smart_strcpy_nn(ptr src:er2, ptr dst:er0)
 可以输入空指针
 当 dst 为 NULL, 什么都不做
 当 src 为 NULL, 把 dst 处字符串设为 ""
@@ -166,6 +172,7 @@ diag_calc_checksum 2:2392
 
 输入：无
 输出：ER0,XR4  ER0为checksum数值 XR4为ER0的字符串
+副作用：把F004设成1
 
 (word,dword) diag_calc_checksum():(er0,xr4)
 
@@ -198,10 +205,17 @@ else if (R0.7==0) {
   if (R0.6==0) {
     ER0=0
   }
-  else {
+  else { //R0.6==1
     ER0=0xD784
   }
 }
 else {
   ER0=0xD522
 }
+
+获得当前模式撤销区的位置
+如果模式代码是 0b00...，那就没有撤销区
+如果模式代码是 0b01...，那撤销区在 0xD784
+如果模式代码是 0b1x...，那撤销区在 0xD522 (表格模式是特例，它的撤销区在0xD784
+
+ptr <unknown>():er0

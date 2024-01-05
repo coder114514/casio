@@ -18900,14 +18900,17 @@
 009D1C   FC 51              CMPC    R1, #252
 009D1E   EF C8              BC      NE, 09CFEh
 009D20   EC CE              BC      AL, 09CFAh
+
 009D22   7E F8              PUSH    QR8
 009D24   6E F4              PUSH    XR4
 009D26   1A AE              MOV     ER14, SP
 009D28   1F FE              RT
+
 009D2A   EA A1              MOV     SP, ER14
 009D2C   2E F4              POP     XR4
 009D2E   3E F8              POP     QR8
 009D30   8E F2              POP     PC
+
 009D32   5E F8              PUSH    ER8
 009D34   00 88              MOV     R8, R0
 009D36   10 90 10 D0        L       R0, 0D010h
@@ -18922,6 +18925,7 @@
 009D4C   88 80              SUB     R0, R8
 009D4E   1E F8              POP     ER8
 009D50   1F FE              RT
+
 009D52   CE F8              PUSH    LR
 009D54   01 F0 22 9D        BL      00h:09D22h
 009D58   25 FA              MOV     ER10, ER2
@@ -18933,6 +18937,7 @@
 009D68   A5 F0              MOV     ER0, ER10
 009D6A   01 F2 B8 03        BL      02h:003B8h
 009D6E   00 F0 2A 9D        B       00h:09D2Ah
+
 009D72   5E FC              PUSH    ER12
 009D74   25 FC              MOV     ER12, ER2
 009D76   27 F0              CMP     ER0, ER2
@@ -18950,6 +18955,7 @@
 009D8E   C5 F0              MOV     ER0, ER12
 009D90   1E FC              POP     ER12
 009D92   1F FE              RT
+
 009D94   CE F8              PUSH    LR
 009D96   5E F4              PUSH    ER4
 009D98   01 F2 84 64        BL      02h:06484h
@@ -18969,6 +18975,7 @@
 009DC2   FC 55              CMPC    R5, #252
 009DC4   EE C8              BC      NE, 09DA2h
 009DC6   EB CE              BC      AL, 09D9Eh
+
 009DC8   CE F8              PUSH    LR
 009DCA   01 F0 22 9D        BL      00h:09D22h
 009DCE   05 F8              MOV     ER8, ER0
@@ -66682,6 +66689,7 @@
 026A3A   1F FE              RT
 026A3C   01 00              MOV     R0, #1
 026A3E   1F FE              RT
+
 026A40   CE F8              PUSH    LR
 026A42   01 F0 22 9D        BL      00h:09D22h
 026A46   00 88              MOV     R8, R0
