@@ -168,3 +168,40 @@ diag_calc_checksum 2:2392
 输出：ER0,XR4  ER0为checksum数值 XR4为ER0的字符串
 
 (word,dword) diag_calc_checksum():(er0,xr4)
+
+=====================================================================================
+<unknown> 2:0E5A
+020E5A   10 90 11 D1        L       R0, 0D111h
+020E5E   88 70              CMP     R0, #136
+020E60   07 C9              BC      EQ, 20E70h
+020E62   71 A0              TB      R0.7
+020E64   03 C9              BC      EQ, 20E6Ch
+020E66   22 00              MOV     R0, #34
+020E68   D5 01              MOV     R1, #213
+020E6A   1F FE              RT
+020E6C   61 A0              TB      R0.6
+020E6E   03 C9              BC      EQ, 20E76h
+020E70   84 00              MOV     R0, #132
+020E72   D7 01              MOV     R1, #215
+020E74   1F FE              RT
+020E76   00 E0              MOV     ER0, #0
+020E78   1F FE              RT
+
+输入：无
+输出：ER0
+
+R0=[cur_mode]
+if (R0==0x88) { //table模式
+  ER0=0xD784    //table模式的撤销区
+}
+else if (R0.7==0) {
+  if (R0.6==0) {
+    ER0=0
+  }
+  else {
+    ER0=0xD784
+  }
+}
+else {
+  ER0=0xD522
+}
