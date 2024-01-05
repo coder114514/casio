@@ -1,17 +1,18 @@
+nxu8 上地址空间是分段的，每一段 64 KiB，第0段code和data是分开的
 官方模拟器上
-ROM第0段位于 [SimU8.dll+16CE50]
-ROM第1段位于 [SimU8.dll+16CE88]
-ROM第2段位于 [SimU8.dll+16CE88]+10000
-ROM第3段位于 [SimU8.dll+16CE88]+20000
-RAM 位于 [SimU8.dll+16CE6C] (只用了 segment 0 的内存)
-每一段内存都是 64KiB
-RAM 用到的部分为 D000-FFFF
+第0段(code)位于 [SimU8.dll+16CE50]
+第0段(data)位于 [SimU8.dll+16CE6C]
+第1段位于 [SimU8.dll+16CE88]
+第2段位于 [SimU8.dll+16CE88]+10000
+第3段位于 [SimU8.dll+16CE88]+20000
 
 CSR  位于 SimU8.dll+16CEBE (半字节
-PC   位于 SimU8.dll+16CEB4 (一字节
+PC   位于 SimU8.dll+16CEB4 (两字节
 LCSR 位于 SimU8.dll+16CEBF (半字节
-LR   位于 SimU8.dll+16CEB6 (一字节
+LR   位于 SimU8.dll+16CEB6 (两字节
 SP   位于 SimU8.dll+16CEC8 (两字节
+
+第0段data布局
 
 D10E       last function pressed
 D110       04,08,00=shift按下,alpha按下,都没按下
@@ -33,8 +34,7 @@ D248~D30E  缓存区, 长度199字节, 每次按下=后输入区会被复制到�
 D30F       正常为00, 缓存区结束                                                         [输入区第400字节]
 D310~D317  长度8字节, 随机数种子前半部分                                                 [输入去第401~408字节]
 D318~D319  长度2字节, 不稳定字符(随机数种子后半部分)                                      [输入区第409~410字节]
-{变量 0x40~0x4F：每个长度都是10字节}
-D31A~D323  变量M      0x40
+D31A~D323  变量M      0x40 {变量 0x40~0x4F：每个长度都是10字节}
 D324~D32D  变量Ans    0x41
 D32E~D337  变量A      0x42
 D338~D341  变量B      0x43
@@ -46,8 +46,7 @@ D36A~D373  变量x      0x48
 D374~D37D  变量y      0x49
 D37E~D387  变量PreAns 0x4A
 D388~D391  变量@      0x4B
-{接下来四个变量与历史记录重叠}
-D392~D39B  变量@      0x4C
+D392~D39B  变量@      0x4C {接下来四个变量与历史记录重叠}
 D39C~D3A5  变量@      0x4D
 D3A6~D3AF  变量@      0x4E
 D3B0~D3B9  变量@      0x4F
