@@ -40,7 +40,7 @@
 221AC		line_print_font14_col0  # r0: row, er2: char*
 
 086F8		render_e3d4
-08704		render.ddd4
+08704		render_ddd4
 # copy content at (position) to screen
 08FB8		memzero
 # at er0, er2 bytes, call memset

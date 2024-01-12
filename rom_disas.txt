@@ -1,5 +1,5 @@
 //////////////////////////////////// vector table
-000000   00 F0              F000   initial SP
+000000   00 F0              0xF000 initial SP
 000002   FE 93              0:93FE reset routine entry point for BRK with ELEVEL=2,3 or externel reset input
 000004   00 94              0:9400 reset routine entry point for BRK with ELEVEL=0,1
 000006   60 00              NMICE interrupt
@@ -15617,7 +15617,6 @@
 007EE4   1E F0              POP     ER0
 007EE6   1E F4              POP     ER4
 007EE8   8E F2              POP     PC
-
 007EEA   00 00              MOV     R0, #0
 007EEC   06 01              MOV     R1, #6
 007EEE   5E F0              PUSH    ER0
@@ -15628,6 +15627,7 @@
 007EF8   01 F0 A8 F1        BL      00h:0F1A8h
 007EFC   1E F0              POP     ER0
 007EFE   F3 CE              BC      AL, 07EE6h
+
 007F00   7E F8              PUSH    QR8
 007F02   00 E8              MOV     ER8, #0
 007F04   00 EA              MOV     ER10, #0
@@ -15979,6 +15979,7 @@
 008216   1E F6              POP     ER6
 008218   3E F8              POP     QR8
 00821A   8E F2              POP     PC
+
 00821C   00 00              MOV     R0, #0
 00821E   CE F8              PUSH    LR
 008220   7E F8              PUSH    QR8
@@ -16035,6 +16036,7 @@
 008290   A5 F2              MOV     ER2, ER10
 008292   3E F8              POP     QR8
 008294   8E F2              POP     PC
+
 008296   CE F8              PUSH    LR
 008298   6E F4              PUSH    XR4
 00829A   20 84              MOV     R4, R2
@@ -59163,6 +59165,7 @@
 0222A6   84 E2              ADD     ER2, #4
 0222A8   01 F0 1C 82        BL      00h:0821Ch
 0222AC   8E F2              POP     PC
+
 0222AE   CE F8              PUSH    LR
 0222B0   01 F0 A8 8C        BL      00h:08CA8h
 0222B4   00 81              MOV     R1, R0
@@ -59179,7 +59182,7 @@
 0222CC   84 E2              ADD     ER2, #4
 0222CE   01 F0 1C 82        BL      00h:0821Ch
 0222D2   8E F2              POP     PC
-
+// diag_checksum
 0222D4   CE F8              PUSH    LR
 0222D6   7E F0              PUSH    QR0
 0222D8   7E F8              PUSH    QR8
@@ -75483,7 +75486,7 @@
 03FFF2   33 39              ascii: 39
 03FFF4   43 20              ascii: C[space]
 
-03FFF6   A8 04
+03FFF6   A8 04              正确的checksum
 03FFF8   00 00
 03FFFA   00 00
 03FFFC   00 00

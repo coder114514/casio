@@ -4,10 +4,11 @@
 1:0000~1:FFFD 代码   64.00 KiB
 2:0000~2:BEED 代码   47.73 KiB
 3:FFC0~3:FFE7 数据   39 B
-3:FFEE~3:FFFF 型号   18 B
-43 59 2D 32 33 39 43 20 A8 04 00 00 ...
-C  Y  -  2  3  9  C     ⁸  ?? -- 计算器二级字符表
-C  Y  -  2  3  9  C     ?? ?? -- ASCII 码
+3:FFEE~3:FFF5 型号    8 B
+43 59 2D 32 33 39 43   20
+C  Y  -  2  3  9  C  [space]
+3:FFF6~3:FFF7 正确的checksum: A804
+
 =======================================================================================
 CPU 对 POP PC 有特殊处理，POP PC 其实相当于POP两次 POP PC, POP CSR, 4个字节     PUSH/POP LR 也是类似的
 PUSH 和 POP 永远是2字节为一单位
@@ -110,7 +111,7 @@ diag_calc_checksum 2:2392
 02239E   00 0E              MOV     R14, #0
 0223A0   FC 0F              MOV     R15, #252  //0xFC00=#64512->er14
 0223A2   00 EA              MOV     ER10, #0
-0223A4   AA F0              LEA     [ER10] //0->EA
+0223A4   AA F0              LEA     [ER10] //0->EA     //gadget:calc_checksum_0
 //loop
 0223A6   05 E3              DSR<-   005h
 0223A8   52 9A              L       ER10, [EA+] //EA move 2bytes
@@ -136,7 +137,7 @@ diag_calc_checksum 2:2392
 ////seg2 0000~FFFF
 0223C8   00 EE              MOV     ER14, #0
 0223CA   00 EA              MOV     ER10, #0
-0223CC   AA F0              LEA     [ER10]
+0223CC   AA F0              LEA     [ER10]             //gadget:calc_checksum_2
 //loop
 0223CE   02 E3              DSR<-   002h
 0223D0   52 9A              L       ER10, [EA+]
@@ -219,3 +220,96 @@ else {
 如果模式代码是 0b1x...，那撤销区在 0xD522 (表格模式是特例，它的撤销区在0xD784
 
 ptr <unknown>():er0
+
+=====================================================================================
+diag_checksum 2:22D4
+0222D4   CE F8              PUSH    LR
+0222D6   7E F0              PUSH    QR0
+0222D8   7E F8              PUSH    QR8
+0222DA   1A AE              MOV     ER14, SP
+0222DC   F0 E1              ADD     SP, #-10h
+0222DE   01 F0 00 7F        BL      00h:07F00h  //buffer_clear
+0222E2   01 F2 78 22        BL      02h:02278h  //diag_print_ver
+0222E6   01 F0 04 87        BL      00h:08704h  //render_ddd4
+0222EA   01 F2 92 23        BL      02h:02392h  //diag_calc_checksum, 此时er0为checksum数值, xr4为对应字符串
+0222EE   0C F0 F6 FF        LEA     0FFF6h
+0222F2   03 E3              DSR<-   003h
+0222F4   52 92              L       ER2, [EA+]  //er2<-正确的checksum(A804)
+0222F6   27 F0              CMP     ER0, ER2
+0222F8   04 C8              BC      NE, 22302h
+0222FA   20 08              MOV     R8, 0x20
+0222FC   4F 09              MOV     R9, 0x4F
+0222FE   4B 0A              MOV     R10, 0x4B
+022300   03 CE              BC      AL, 22308h
+022302   20 08              MOV     R8, 0x20
+022304   4E 09              MOV     R9, 0x4E
+022306   47 0A              MOV     R10, 0x47  //gadget:pr_checksum
+022308   00 0B              MOV     R11, #0
+// 上述代码：checksum正确则 xr8=" OK\0", 不正确则 xr8=" NG\0"
+02230A   53 00              MOV     R0, 0x53
+02230C   55 01              MOV     R1, 0x55
+02230E   4D 02              MOV     R2, 0x4D
+022310   20 03              MOV     R3, 0x20
+// xr0="SUM "
+022312   01 F2 82 23        BL      02h:02382h  //store_reg_to_stack    stack: xr0,xr4,xr8,xr12(unused),<ret>...
+022316   11 01              MOV     R1, 0x11    //                             ^^     (xr8末尾是\0
+022318   1A A2              MOV     ER2, SP     //                             SP
+02231A   01 F0 1C 82        BL      00h:0821Ch  //line_print.col_0 (r1:row=#1,er2:addr
+02231E   01 F2 AE 22        BL      02h:022AEh  //diag_print_pd
+022322   01 F0 04 87        BL      00h:08704h  //render_ddd4
+022326   01 F2 08 24        BL      02h:02408h  //跟pd有关
+02232A   A5 70              CMP     R0, 0xA5
+02232C   04 C8              BC      NE, 22336h
+02232E   20 04              MOV     R4, 0x20
+022330   4F 05              MOV     R5, 0x4F
+022332   4B 06              MOV     R6, 0x4B
+022334   03 CE              BC      AL, 2233Ch
+022336   20 04              MOV     R4, 0x20
+022338   4E 05              MOV     R5, 0x4E
+02233A   47 06              MOV     R6, 0x47
+02233C   00 07              MOV     R7, #0
+// 上述代码 r0==0xa5则 xr4=" OK\0"，不正确则 xr4=" NG\0"
+02233E   52 00              MOV     R0, #82        //gadget:pr_checksum_2
+022340   65 01              MOV     R1, #101
+022342   61 02              MOV     R2, #97
+022344   64 03              MOV     R3, #100
+// xr0="Read"
+022346   01 F2 82 23        BL      02h:02382h  //store_reg_to_stack
+02234A   2C 00              MOV     R0, 0x2C
+02234C   21 01              MOV     R1, 0x21
+02234E   1A A2              MOV     ER2, SP
+022350   01 F0 1E 82        BL      00h:0821Eh  //line_print (r0:col=#4,r1:row=#2,er2:addr
+022354   31 00              MOV     R0, 0x31
+022356   CE 02              MOV     R2, 0xCE
+022358   4D 03              MOV     R3, 0x4D
+02235A   01 F2 AC 21        BL      02h:021ACh  //line_print_font14_col0 (r0:row=#3,er2:addr=0x4DCE
+02235E   0C F0 49 F0        LEA     0F049h
+022362   01 E0              MOV     ER0, #1
+022364   51 90              ST      R0, [EA+]
+022366   51 90              ST      R0, [EA+]
+022368   51 90              ST      R0, [EA+]
+02236A   31 91              ST      R1, [EA]
+
+02236C   01 F0 04 87        BL      00h:08704h  //render_ddd4
+022370   01 F0 BA 93        BL      00h:093BAh
+022374   FB C9              BC      EQ, 2236Ch
+
+022376   01 F0 A0 92        BL      00h:092A0h
+02237A   EA A1              MOV     SP, ER14
+02237C   3E F8              POP     QR8
+02237E   3E F0              POP     QR0
+022380   8E F2              POP     PC
+
+=====================================================================================
+store_reg_to_stack 2:2382
+022382   5E FC              PUSH    ER12
+022384   E5 FC              MOV     ER12, ER14
+022386   F0 EC              ADD     ER12, #-16
+022388   CA F0              LEA     [ER12]
+02238A   1E FC              POP     ER12
+02238C   57 90              ST      QR0, [EA+]
+02238E   57 98              ST      QR8, [EA+]
+022390   1F FE              RT
+
+副作用: r0..r15 -> [FP-#16]
+void store_reg_to_stack()
