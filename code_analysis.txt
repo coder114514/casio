@@ -7,7 +7,7 @@
 3:FFEE~3:FFF5 型号    8 B
 43 59 2D 32 33 39 43   20
 C  Y  -  2  3  9  C  [space]
-3:FFF6~3:FFF7 正确的checksum: A804
+3:FFF6~3:FFF7 正确的checksum: A8 04 (04A8)
 
 =======================================================================================
 CPU 对 POP PC 有特殊处理，POP PC 其实相当于POP两次 POP PC, POP CSR, 4个字节     PUSH/POP LR 也是类似的
@@ -50,7 +50,7 @@ smart_strcpy_nn 2:03C2
 0203C2   CE F8              PUSH    LR
 0203C4   05 F0              MOV     ER0, ER0
 0203C6   04 C9              BC      EQ, 203D0h (if er0==0, return)
-0203C8   25 F2              MOV     ER2, ER2
+0203C8   25 F2              MOV     ER2, ER2   gadget:smart_strcpy_nn_
 0203CA   03 C9              BC      EQ, 203D2h (if er2==0, jmp br2)
 0203CC   01 F0 70 D0        BL      00h:0D070h (er0!=0,er2!=0)
 0203D0   8E F2              POP     PC
@@ -234,7 +234,7 @@ diag_checksum 2:22D4
 0222EA   01 F2 92 23        BL      02h:02392h  //diag_calc_checksum, 此时er0为checksum数值, xr4为对应字符串
 0222EE   0C F0 F6 FF        LEA     0FFF6h
 0222F2   03 E3              DSR<-   003h
-0222F4   52 92              L       ER2, [EA+]  //er2<-正确的checksum(A804)
+0222F4   52 92              L       ER2, [EA+]  //er2<-正确的checksum(04A8)
 0222F6   27 F0              CMP     ER0, ER2
 0222F8   04 C8              BC      NE, 22302h
 0222FA   20 08              MOV     R8, 0x20
@@ -269,32 +269,32 @@ diag_checksum 2:22D4
 02233A   47 06              MOV     R6, 0x47
 02233C   00 07              MOV     R7, #0
 // 上述代码 r0==0xa5则 xr4=" OK\0"，不正确则 xr4=" NG\0"
-02233E   52 00              MOV     R0, #82        //gadget:pr_checksum_2
+02233E   52 00              MOV     R0, #82     //gadget:pr_checksum_2
 022340   65 01              MOV     R1, #101
 022342   61 02              MOV     R2, #97
 022344   64 03              MOV     R3, #100
 // xr0="Read"
 022346   01 F2 82 23        BL      02h:02382h  //store_reg_to_stack
-02234A   2C 00              MOV     R0, 0x2C
+02234A   2C 00              MOV     R0, #44
 02234C   21 01              MOV     R1, 0x21
 02234E   1A A2              MOV     ER2, SP
-022350   01 F0 1E 82        BL      00h:0821Eh  //line_print (r0:col=#4,r1:row=#2,er2:addr
+022350   01 F0 1E 82        BL      00h:0821Eh  //line_print (r0:col=44px,r1:row=#2,er2:addr
 022354   31 00              MOV     R0, 0x31
 022356   CE 02              MOV     R2, 0xCE
 022358   4D 03              MOV     R3, 0x4D
-02235A   01 F2 AC 21        BL      02h:021ACh  //line_print_font14_col0 (r0:row=#3,er2:addr=0x4DCE
+02235A   01 F2 AC 21        BL      02h:021ACh  //line_print_font14_col0 (r0:row=#3,er2:addr=0x4DCE "Press AC"
 02235E   0C F0 49 F0        LEA     0F049h
 022362   01 E0              MOV     ER0, #1
 022364   51 90              ST      R0, [EA+]
 022366   51 90              ST      R0, [EA+]
 022368   51 90              ST      R0, [EA+]
 02236A   31 91              ST      R1, [EA]
-
+// wait until AC is pressed
 02236C   01 F0 04 87        BL      00h:08704h  //render_ddd4
-022370   01 F0 BA 93        BL      00h:093BAh
-022374   FB C9              BC      EQ, 2236Ch
+022370   01 F0 BA 93        BL      00h:093BAh  //AC按了, flag_Z=0; else, flag_Z=1
+022374   FB C9              BC      EQ, 2236Ch  //jmp if flag_Z==1
 
-022376   01 F0 A0 92        BL      00h:092A0h
+022376   01 F0 A0 92        BL      00h:092A0h  // 00707 -> F048,F049,F050,F051,F052
 02237A   EA A1              MOV     SP, ER14
 02237C   3E F8              POP     QR8
 02237E   3E F0              POP     QR0
@@ -313,3 +313,90 @@ store_reg_to_stack 2:2382
 
 副作用: r0..r15 -> [FP-#16]
 void store_reg_to_stack()
+
+=====================================================================================
+line_print_col0   r1:row,er2:char* 0:821C
+00821C   00 00              MOV     R0, #0
+line_print r0:col,r1:row,er2:char* 0:821E
+00821E   CE F8              PUSH    LR
+008220   7E F8              PUSH    QR8
+008222   05 F8              MOV     ER8, ER0
+008224   25 FA              MOV     ER10, ER2
+008226   0B 0D              MOV     R13, #11
+008228   10 90 37 D1        L       R0, 0D137h  //r0<-font_size
+00822C   0E 70              CMP     R0, #14
+00822E   01 C9              BC      EQ, 08232h
+008230   06 0D              MOV     R13, #6
+/// r8:col, r9:row, er10:char*
+/// font_size==14: r13<-#11; else: r13<-#6
+008232   C0 0F              MOV     R15, #192  //屏幕一行192个像素
+008234   D8 8F              SUB     R15, R13
+/// r15<-#192-r13
+008236   00 0C              MOV     R12, #0
+008238   00 03              MOV     R3, #0
+///loop
+00823A   F7 88              CMP     R8, R15
+00823C   28 C2              BC      GT, 0828Eh //if R8>R15, loop ends
+00823E   A0 92              L       R2, [ER10] //读取一个字符
+008240   26 C9              BC      EQ, 0828Eh //'\0'字符, loop ends
+008242   04 72              CMP     R2, #4
+008244   07 C9              BC      EQ, 08254h //r2==4, jmp br1
+008246   F0 72              CMP     R2, 0xF0
+008248   1F C0              BC      GE, 08288h //双字节字符头, jmp br4
+00824A   01 72              CMP     R2, #1
+00824C   0E C8              BC      NE, 0826Ah //r2!=1, jmp br2
+00824E   01 F0 96 82        BL      00h:08296h //else (r2==1), call 0:8296
+008252   17 CE              BC      AL, 08282h //jmp br3
+br1:
+008254   10 90 37 D1        L       R0, 0D137h
+008258   0E 70              CMP     R0, #14
+00825A   17 C8              BC      NE, 0828Ah //font_size==14则er10++,continue
+00825C   81 EA              ADD     ER10, #1   //else (font_size!=14)
+00825E   A0 92              L       R2, [ER10] //再读取一个字符
+008260   85 F0              MOV     ER0, ER8
+008262   01 F0 F6 82        BL      00h:082F6h //char_print r0:col,r1:row,er2:char
+008266   09 18              ADD     R8, #9
+008268   0C CE              BC      AL, 08282h //jmp br3
+br2:
+00826A   85 F0              MOV     ER0, ER8
+00826C   5E F2              PUSH    ER2
+00826E   01 F0 F6 82        BL      00h:082F6h //char_print r0:col,r1:row,er2:char
+008272   1E F2              POP     ER2
+008274   F1 73              CMP     R3, 0xF1
+008276   04 C9              BC      EQ, 08280h
+008278   F2 73              CMP     R3, 0xF2
+00827A   02 C9              BC      EQ, 08280h
+00827C   D1 88              ADD     R8, R13
+00827E   01 CE              BC      AL, 08282h //jmp br3
+008280   0C 18              ADD     R8, #12
+br3:
+008282   00 03              MOV     R3, #0
+008284   01 1C              ADD     R12, #1
+008286   01 CE              BC      AL, 0828Ah //er10++,continue
+br4:
+008288   20 83              MOV     R3, R2
+00828A   81 EA              ADD     ER10, #1
+00828C   D6 CE              BC      AL, 0823Ah
+///loop
+00828E   C0 80              MOV     R0, R12 //r12:字符数
+008290   A5 F2              MOV     ER2, ER10
+008292   3E F8              POP     QR8
+008294   8E F2              POP     PC
+
+r13 = #11 if font_size==#14
+      #6  else
+
+r3字符头（单字节为0，双字节为对应字符头Fx
+
+读取r2为：
+1. 0x4
+if font_size==#14: er10++
+else:              er10++, r2=*er10, print er2, r8+=9, r3=0, r12++
+2. Fx
+                   r3=r2, er10++
+3. 0x1
+                        call 0:8296,        r3=0, r12++, er10++
+4. 普通的字符(其他)
+                   print er2, r8+=delta_r8, r3=0, r12++, er10++
+delta_r8 = #12  if r3==0xF1 || r3==0xF2
+           r13  else

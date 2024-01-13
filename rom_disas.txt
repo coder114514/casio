@@ -9651,13 +9651,13 @@
 004DC6   14 15              ADD     R5, #20
 004DC8   57 47              XOR     R7, #87
 004DCA   37 27              AND     R7, #55
-004DCC   17 00              MOV     R0, #23
-004DCE   50 72              CMP     R2, #80
-004DD0   65 73              CMP     R3, #101
-004DD2   73 20              AND     R0, #115
-004DD4   41 43              XOR     R3, #65
-004DD6   00 54              CMPC    R4, #0
-004DD8   45 53              CMPC    R3, #69
+004DCC   17 00
+004DCE   50 72              ascii:Pr
+004DD0   65 73              ascii:es
+004DD2   73 20              ascii:s[space]
+004DD4   41 43              ascii:AC
+004DD6   00 54
+004DD8   45 53
 004DDA   54 20              AND     R0, #84
 004DDC   4F 4B              XOR     R11, #79
 004DDE   00 52              CMPC    R2, #0
@@ -15979,8 +15979,9 @@
 008216   1E F6              POP     ER6
 008218   3E F8              POP     QR8
 00821A   8E F2              POP     PC
-
+///////////////////////////////line_print_col0   r1:row,er2:char*
 00821C   00 00              MOV     R0, #0
+///////////////////////////////line_print r0:col,r1:row,er2:char*
 00821E   CE F8              PUSH    LR
 008220   7E F8              PUSH    QR8
 008222   05 F8              MOV     ER8, ER0
@@ -15990,17 +15991,18 @@
 00822C   0E 70              CMP     R0, #14
 00822E   01 C9              BC      EQ, 08232h
 008230   06 0D              MOV     R13, #6
-008232   C0 0F              MOV     R15, #192
+008232   C0 0F              MOV     R15, #192  //屏幕一行192个像素
 008234   D8 8F              SUB     R15, R13
 008236   00 0C              MOV     R12, #0
 008238   00 03              MOV     R3, #0
+///loop
 00823A   F7 88              CMP     R8, R15
 00823C   28 C2              BC      GT, 0828Eh
 00823E   A0 92              L       R2, [ER10]
 008240   26 C9              BC      EQ, 0828Eh
 008242   04 72              CMP     R2, #4
 008244   07 C9              BC      EQ, 08254h
-008246   F0 72              CMP     R2, #240
+008246   F0 72              CMP     R2, 0xF0
 008248   1F C0              BC      GE, 08288h
 00824A   01 72              CMP     R2, #1
 00824C   0E C8              BC      NE, 0826Ah
@@ -16032,11 +16034,12 @@
 008288   20 83              MOV     R3, R2
 00828A   81 EA              ADD     ER10, #1
 00828C   D6 CE              BC      AL, 0823Ah
+///loop
 00828E   C0 80              MOV     R0, R12
 008290   A5 F2              MOV     ER2, ER10
 008292   3E F8              POP     QR8
 008294   8E F2              POP     PC
-
+///////////////////////////////////////////////
 008296   CE F8              PUSH    LR
 008298   6E F4              PUSH    XR4
 00829A   20 84              MOV     R4, R2
@@ -16071,6 +16074,7 @@
 0082E4   11 96 38 D1        ST      R6, 0D138h
 0082E8   2E F4              POP     XR4
 0082EA   8E F2              POP     PC
+
 0082EC   CE F8              PUSH    LR
 0082EE   6E F4              PUSH    XR4
 0082F0   7E F8              PUSH    QR8
@@ -17701,6 +17705,7 @@
 009160   01 F0 98 91        BL      00h:09198h
 009164   00 F0 FE 93        B       00h:093FEh
 009168   1F FE              RT
+
 00916A   CE F8              PUSH    LR
 00916C   05 F2              MOV     ER2, ER0
 00916E   91 A0 0A F0        TB      0F00Ah.1
@@ -17742,6 +17747,7 @@
 0091DC   8E F2              POP     PC
 0091DE   92 A0 0A F0        RB      0F00Ah.1
 0091E2   C8 CE              BC      AL, 09174h
+
 0091E4   CE F8              PUSH    LR
 0091E6   E6 CE              BC      AL, 091B4h
 0091E8   0C F0 14 F0        LEA     0F014h
@@ -17815,6 +17821,7 @@
 00929A   53 90              ST      ER0, [EA+]
 00929C   31 90              ST      R0, [EA]
 00929E   1F FE              RT
+
 0092A0   0C F0 48 F0        LEA     0F048h
 0092A4   00 E0              MOV     ER0, #0
 0092A6   07 E2              MOV     ER2, #7
@@ -17822,6 +17829,7 @@
 0092AA   53 92              ST      ER2, [EA+]
 0092AC   31 92              ST      R2, [EA]
 0092AE   1F FE              RT
+
 0092B0   0C F0 10 F0        LEA     0F010h
 0092B4   22 E0              MOV     ER0, #34
 0092B6   53 90              ST      ER0, [EA+]
@@ -17829,6 +17837,7 @@
 0092BA   03 00              MOV     R0, #3
 0092BC   11 90 18 F0        ST      R0, 0F018h
 0092C0   1F FE              RT
+
 0092C2   00 E0              MOV     ER0, #0
 0092C4   0C F0 40 00        LEA     00040h
 0092C8   08 E3              DSR<-   008h
@@ -17840,6 +17849,7 @@
 0092D4   F9 C8              BC      NE, 092C8h
 0092D6   01 00              MOV     R0, #1
 0092D8   1F FE              RT
+
 0092DA   04 E0              MOV     ER0, #4
 0092DC   11 90 30 F0        ST      R0, 0F030h
 0092E0   07 00              MOV     R0, #7
@@ -17907,9 +17917,11 @@
 009392   7F 00              MOV     R0, #127
 009394   11 90 46 F0        ST      R0, 0F046h
 009398   1F FE              RT
+
 00939A   00 02              MOV     R2, #0
 00939C   11 92 46 F0        ST      R2, 0F046h
 0093A0   1F FE              RT
+
 0093A2   0F 00              MOV     R0, #15
 0093A4   FF 10              ADD     R0, #255
 0093A6   FE C8              BC      NE, 093A4h
@@ -17921,23 +17933,27 @@
 0093B6   00 60              ADDC    R0, #0
 0093B8   1F FE              RT
 ////////////////////////////////////////////////////////////
+// AC按了，则flag_Z=0, 没按, 则flag_Z=1
 0093BA   CE F8              PUSH    LR
 0093BC   5E FA              PUSH    ER10
 0093BE   10 02              MOV     R2, #16
-0093C0   11 92 46 F0        ST      R2, 0F046h
+0093C0   11 92 46 F0        ST      R2, 0F046h //F046.4~6=1, F046.0~3=0
 0093C4   00 E0              MOV     ER0, #0
 0093C6   05 02              MOV     R2, #5
+
 0093C8   A1 A0 40 F0        TB      0F040h.2
-0093CC   0A C8              BC      NE, 093E2h
+0093CC   0A C8              BC      NE, 093E2h //when F040h.2==0, jmp br2 (AC is pressed)
 0093CE   FF 12              ADD     R2, #255
-0093D0   03 C9              BC      EQ, 093D8h
+0093D0   03 C9              BC      EQ, 093D8h //when r2==0, jmp br1 (time out)
 0093D2   01 F2 8E 20        BL      02h:0208Eh
-0093D6   F8 CE              BC      AL, 093C8h
+0093D6   F8 CE              BC      AL, 093C8h //loop
+br1:
 0093D8   04 00              MOV     R0, #4
 0093DA   10 01              MOV     R1, #16
 0093DC   13 90 50 D1        ST      ER0, 0D150h
 0093E0   01 E0              MOV     ER0, #1
-0093E2   01 F0 9A 93        BL      00h:0939Ah
+br2:
+0093E2   01 F0 9A 93        BL      00h:0939Ah //0->F046.0~6, clear KO
 0093E6   00 80              MOV     R0, R0
 0093E8   1E FA              POP     ER10
 0093EA   8E F2              POP     PC
@@ -58946,6 +58962,7 @@
 022086   01 F0 6A 91        BL      00h:0916Ah
 02208A   2E F0              POP     XR0
 02208C   8E F2              POP     PC
+
 02208E   CE F8              PUSH    LR
 022090   6E F0              PUSH    XR0
 022092   0A 00              MOV     R0, #10
@@ -58953,6 +58970,7 @@
 022096   01 F0 6A 91        BL      00h:0916Ah
 02209A   2E F0              POP     XR0
 02209C   8E F2              POP     PC
+
 02209E   CE F8              PUSH    LR
 0220A0   6E F4              PUSH    XR4
 0220A2   7E F8              PUSH    QR8
