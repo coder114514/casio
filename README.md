@@ -1,55 +1,10 @@
-[反编译](https://github.com/qiufuyu123/fxesplus)
+这个项目包含一些用于研究 fx-991cnx 计算器的工具
 
-### CLASSWIZ fx-991CN X
+相关项目
+https://github.com/qiufuyu123/fxesplus
+https://github.com/user202729/fxesplus
 
-#### lbf转换器原理
-
-lbf/in^2->kPa 的代码是 0xFE 0x23
-
-冒号代码是 0x23
-
-历史记录中冒号会去掉，于是只剩下 0xFE
-
-#### 常见字符
-
-|              字符              |        代码         |
-| :----------------------------: | :-----------------: |
-|           lbf转换器            |        0xFE         |
-|             PreAns             |        0x4A         |
-|        t..E 这串乱码是         |      0xFE 0xFD      |
-|             Unknow             |      0xFE 0xFE      |
-|              Ran#              |      0xFD 0x18      |
-|         闪屏爆机用的@          |        0x18         |
-|               框               |        0x19         |
-| 能刷任意字符的@ (lbf+shift748) |        0x4D         |
-|  能刷出3/0的@ (lbf+shift714)   |        0x4F         |
-|               $                |        0x24         |
-|              0-9               |      0x30-0x39      |
-|          十六进制A-F           |      0x3A-0x3F      |
-|               an               |      0xFD 0x20      |
-|               r                |      0xFD 0x13      |
-|            循环小数            |        0x2F         |
-|        循环小数（数学）        | 0x2F 0x1A 0x19 0x1B |
-|         数学源码中的@          |     0x1A - 0x1F     |
-
-#### 字符表
-
-##### 单字符
-
-![991单字节字符表](/991单字节字符表.jpg)
-
-##### FE 开头的双字节字符
-
-![991FE字符表](/991FE字符表.jpg)
-
-##### FD 开头的双字节字符
-
-![991FD字符表](/991FD字符表.jpg)
-
-##### FA 开头的双字节字符
-
-![991FA字符表](/991FA字符表.jpg)
-
-##### FB 开头的双字节字符
-
-![991FB字符表](/991FB字符表.jpg)
+模拟器
+https://github.com/qiufuyu123/CasioEmuX
+https://github.com/gamingwithevets/CasioEmu
+https://github.com/user202729/CasioEmu
