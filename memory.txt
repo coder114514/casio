@@ -1,10 +1,10 @@
-nxu8 上地址空间是分段的，每一段 64 KiB，第0段code和data是分开的
+nxu8 上地址空间是分段的，每一段 64 KiB，第0段code和data是分开的（除了在 ROM_WINDOW 内的（991cnx 的 ROM_WINDOW=0xD000
 官方模拟器上
-第0段(code)位于 [SimU8.dll+16CE50]
-第0段(data)位于 [SimU8.dll+16CE6C]
-第1段位于 [SimU8.dll+16CE88]
-第2段位于 [SimU8.dll+16CE88]+10000
-第3段位于 [SimU8.dll+16CE88]+20000
+第0段(code)位于 [SimU8.dll+16CE50]  映射到 ROM 的
+第0段(data)位于 [SimU8.dll+16CE6C]  ROM_WINDOW 之外的是映射到 RAM 的, F000以及之后的是 SFR
+第1段位于 [SimU8.dll+16CE88]        映射到 ROM 的
+第2段位于 [SimU8.dll+16CE88]+10000  映射到 ROM 的
+第3段位于 [SimU8.dll+16CE88]+20000  映射到 ROM 的
 
 CSR  位于 SimU8.dll+16CEBE (半字节
 PC   位于 SimU8.dll+16CEB4 (两字节
@@ -56,4 +56,7 @@ DBE7       数学模式下输入区内容的长度（即二进制表示的字节
 DC02~DC0B  变量$ 0x24 长度10字节
 DDD4       screen buffer 长度384字节
 E3D4       screen buffer 长度384字节
-F000       栈指针开机时指向这里
+????~EFFF  栈
+F000       可能是 DSR
+F040       按键 KI (inverted)
+F046       按键 KO
