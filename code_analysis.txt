@@ -400,3 +400,66 @@ else:              er10++, r2=*er10, print er2, r8+=9, r3=0, r12++
                    print er2, r8+=delta_r8, r3=0, r12++, er10++
 delta_r8 = #12  if r3==0xF1 || r3==0xF2
            r13  else
+
+=====================================================================================
+gadget: 0:EBCE
+0:EBCE  	BL _memcpy_nn
+0:ECD2  	ADD SP, #2
+0:EBD4  	B LEAVE
+LEAVE: mov sp,er14; pop xr4,qr8,pc
+
+_memcpy_nn:
+	push er14                      ; 22DC4 | FE5E
+	mov er14, sp                   ; 22DC6 | AE1A
+	push er12                      ; 22DC8 | FC5E
+	push er8                       ; 22DCA | F85E
+	push er4                       ; 22DCC | F45E
+	mov er8, er0                   ; 22DCE | F805
+	mov er4, er0                   ; 22DD0 | F405
+	mov er12, er2                  ; 22DD2 | FC25
+	bc al, .l_024                  ; 22DD4 | CE09
+.l_012:
+	mov er0, er4                   ; 22DD6 | F045
+	l r2, [er12]                   ; 22DD8 | 92C0
+	st r2, [er4]                   ; 22DDA | 9241
+	add er0, 1                     ; 22DDC | E081
+	mov er4, er0                   ; 22DDE | F405
+	add er12, 1                    ; 22DE0 | EC81
+	l er0, 2[er14]                 ; 22DE2 | B042
+	add er0, -1                    ; 22DE4 | E0FF
+	st er0, 2[er14]                ; 22DE6 | B0C2
+.l_024:
+	mov er0, 0                     ; 22DE8 | E000
+	l er2, 2[er14]                 ; 22DEA | B242
+	cmp er0, er2                   ; 22DEC | F027
+	bc lt, .l_012                  ; 22DEE | C1F3
+	mov er0, er8                   ; 22DF0 | F085
+	pop er4                        ; 22DF2 | F41E
+	pop er8                        ; 22DF4 | F81E
+	pop er12                       ; 22DF6 | FC1E
+	mov sp, er14                   ; 22DF8 | A1EA
+	pop er14                       ; 22DFA | FE1E
+	rt                             ; 22DFC | FE1F
+输入
+er0: dst
+er2: src
+栈顶两字节: len
+副作用
+破坏er2
+
+push er14
+mov er14,sp
+push er12
+push er8
+push er4
+p1=er0
+p2=er2
+while *(er14+2)>0:
+	*p1++=*p2++
+	*(er14+2)--
+er2=0
+pop er4
+pop er8
+pop er12
+pop er14
+rt

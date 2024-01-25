@@ -1,0 +1,107 @@
+132an  entry point 0xD522+#56=0xD522+0x38
+     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+0 | 6C C0 _0 __ 6C D9 12 88 _1 __ D2 D2 28 8F _0 __
+1 | 14 D2 __ __ 28 8F _0 __ __ __ __ __ AE 21 _2 __
+2 | 06 87 _0 __ A8 21 _1 __ 1E D9 48 F7 _0 __ C2 8F
+3 | _0 __ __ __ 58 4C _1 __ 72 0D _2 __ DA D2 7A 23
+4 | _2 __ 44 D9 6C C0 _0 __ 44 D9 28 8F _0 __ 6E D9
+5 | FD BF 26 8F D0 41 __ __ __ __ C2 8F 40 D9 2C 48
+6 | 32 33 _2 __ E4 5E _1 __ __ __ 20 8F _0 __ 76 D9
+7 | __ __ A8 21 _1 __ 78 D9 C8 03 _2 __ 34 61 _1 __
+8 | __ __ __ __ 28 8F _0 __ E0 D8 __ __ 0E 81 _1 __
+9 | E4 5E _1 __ __ __ 26 8F E0 D8 16 E2 _0 __ CE 8B
+A | _1 __ 34 61 _1 __ A7 D9 01 __ D2 03 _2 __ 34 61
+B | _1 __ A6 D8 3A D1 CE EB E0 D8 01 01 6C C0 _0 __
+C | 8A D1 24 8F _0 __ __
+
+lua
+(function(n)data[0xd11e]=0;for i=0,n-1,1 do data[0xd180+i]=0x30 end;data[0xd180+n]=0xFD;data[0xd180+n+1]=0x20 end)(132)
+rop={0x6C,0xC0,0x30,0x30,0x6C,0xD9,0x12,0x88,0x31,0x30,0xD2,0xD2,0x28,0x8F,0x30,0x30,0x14,0xD2,0x30,0x30,0x28,0x8F,0x30,0x30,0x30,0x30,0x30,0x30,0xAE,0x21,0x32,0x30,0x06,0x87,0x30,0x30,0xA8,0x21,0x31,0x30,0x1E,0xD9,0x48,0xF7,0x30,0x30,0xC2,0x8F,0x30,0x30,0x30,0x30,0x58,0x4C,0x31,0x30,0x72,0x0D,0x32,0x30,0xDA,0xD2,0x7A,0x23,0x32,0x30,0x44,0xD9,0x6C,0xC0,0x30,0x30,0x44,0xD9,0x28,0x8F,0x30,0x30,0x6E,0xD9,0xFD,0xBF,0x26,0x8F,0xD0,0x41,0x30,0x30,0x30,0x30,0xC2,0x8F,0x40,0xD9,0x2C,0x48,0x32,0x33,0x32,0x33,0xE4,0x5E,0x31,0x33,0x33,0x33,0x20,0x8F,0x30,0x33,0x76,0xD9,0x33,0x33,0xA8,0x21,0x31,0x33,0x78,0xD9,0xC8,0x03,0x32,0x33,0x34,0x61,0x31,0x33,0x33,0x33,0x33,0x33,0x28,0x8F,0x30,0x33,0xE0,0xD8,0x33,0x33,0x0E,0x81,0x31,0x33,0xE4,0x5E,0x31,0x33,0x33,0x33,0x26,0x8F,0xE0,0xD8,0x16,0xE2,0x30,0x33,0xCE,0x8B,0x31,0x33,0x34,0x61,0x31,0x33,0xA7,0xD9,0x01,0x33,0xD2,0x03,0x32,0x33,0x34,0x61,0x31,0x33,0xA6,0xD8,0x3A,0xD1,0xCE,0xEB,0xE0,0xD8,0x01,0x01,0x6C,0xC0,0x30,0x33,0x8A,0xD1,0x24,0x8F,0x30,0x33,0x33};for i=0,197,1 do data[0xd180+i]=rop[i+1] end
+
+循环外
+D59A 72 0D _2 __ DA D2 						//er14 = D2DA
+D560 7A 23 _2 __ 							//jump er14; pop qr8; pop qr0
+D2DA _1 __ __ __ 26 8F E0 D8 				//qr8，注意er14=D8E0
+D2E2 16 E2 _0 __ CE 8B _1 __ 				//qr0，并没有什么用
+D2EA 34 61 _1 __ A7 D9 01 __ 				//er0 = D9A7; r2 = 01
+D2F2 D2 03 _2 __ 							//*er0 = r2（[D9A7]=01）
+D2F6 34 61 _1 __ A6 D8 3A D1 				//er0 = D8A6; er2 = D13A
+D2FE CE EB E0 D8 01 01 						//memcpy(er0, er2, 0101); jump er14; pop xr4; pop qr8  复制范围D13A~D23A->D8A6~D9A6
+接下来进入循环
+
+D8E0 __ __ __ __							//xr4，没用
+D8E4 __ __ __ __ __ __ __ __				//qr8，没用
+D8EC 6C C0 _0 __ 6C D9 						//er8 = D96C（*ptr）
+D8F2 12 88 _1 __ (ptr) 						//er2 = ptr; r0=1，这个ptr是从D18A处复制过来的
+D8F8 28 8F _0 __ 14 D2 __ __ 				//*er8 = er2; pop xr8（[D96C]=ptr）
+D900 28 8F _0 __ __ __ __ __ 				//*er8 = er2; pop xr8（[D214]=ptr）
+D908 AE 21 _2 __ 							//print *er2，在第r0行
+D90C 06 87 _0 __ 							//flush
+D910 A8 21 _1 __ 1E D9 						//er0 = D91E（*key）
+D916 48 F7 _0 __ 							//waitkey，放在*er0  值是10xx或40xx
+D91A C2 8F _0 __ (key) 						//er2 = key
+D920 58 4C _1 __ 							//pop xr4; pop qr8; 这是为了给D59A的跳转代码腾地方
+D924 72 0D _2 __ DA D2 7A 23 _2 __ 44 D9 	//注意er14=D944
+D930 6C C0 _0 __ 44 D9 						//er8 = D944（*key）
+D936 28 8F _0 __ 6E D9 FD BF 				//*er8 = er2; pop xr8（[D944]=key, er8=D96E, er10=BFFD)
+D93E 26 8F D0 41 __ __ (key) 				//er2 += er10; *er8 = er2; pop xr8（[D96E]=key+BFFD, er2=key+BFFD, er10=key）
+D946 C2 8F 40 D9 2C 48 						//er2 = 482C
+D94C 32 33 _2 __ 							//r0 = r11; jump er14; pop xr4; pop qr8 这一步把奇数位的寄存器复制到偶数位
+D944 (key) C2 8F 							//xr4，并没有什么用
+D948 40 D9 2C 48 32 33 _2 __ 				//qr8，er8和er10是有用的
+D950 E4 5E _1 __ __ __ 						//r2 = r0; pop er0      之后er2为4810或4840
+D956 20 8F _0 __ 76 D9 __ __ 				//er2 += er10; r0 = 0; er10 = *er8; er2 += er10; *er8 = er2; pop xr8(er2+=482C+[D940],[D940]==41D0,于是er2为D20C或D23C);注意er8=D976
+D95E A8 21 _1 __ 78 D9 						//er0 = D978
+D964 C8 03 _2 __ 							//strcpy(er0, er2)，er2根据按键不同可能是D20C或D23C
+D968 34 61 _1 __ (ptr) (key) 				//er0 = ptr; er2 = key
+D970 28 8F _0 __ E0 D8 (key) 				//st er2,[D976]; er8 = D8E0; er10 = key
+接下来根据按键不同产生分支
+
+分支1，D964处er2=D20C：改变当前字符
+D978 0E 81 _1 __ 							//r0 = *er0
+D97C E4 5E _1 __ (ptr) 						//r2 = r0; er0 = ptr，ptr是从D214处复制过来的
+D982 26 8F E0 D8 16 E2 _0 __ 				// er2 += er10; *er8 = er2; pop xr8 给er8设的D8E0只是一个好打而没用的地址，pop xr8也没用，只是用来占位
+D98A CE 8B _1 __ 							//*er0 = r2
+
+分支2，D964处er2=D23C：移动光标
+D978 6C C0 _0 __ 8A D1 						//er8 = D18A
+D97E 24 8F _0 __ 26 8F E0 D8 				//[D18A]+=er2
+D986 16 E2 _0 __ CE 8B _1 __ 				//pop xr8，用来占位
+
+最后分支合并：
+D98E 34 61 _1 __ A7 D9 01 __ 				//er0 = D9A7; r2 = 01
+D996 D2 03 _2 __ 							//*er0 = r2 ([D9A7]=01)
+D99A 34 61 _1 __ A6 D8 3A D1 				//er0 = D8A6; er2 = D13A
+D9A2 CE EB E0 D8 00 01 						//memcpy(er0, er2, 0100); jump er14; pop xr4; pop qr8  (最初是 01 01
+循环重启
+
+0:EBCE  	BL _memcpy_nn
+0:ECD2  	ADD SP, #2
+0:EBD4  	B LEAVE
+
+LEAVE: mov sp,er14; pop xr4,qr8,pc
+
+最后的memcpy有两点需要注意：
+1.这里并没有给er14赋值，但是为什么能跳转呢？观察memcpy的源码（节选）：
+2:2DC4  	PUSH ER14
+2:2DC6  	MOV ER14, SP
+2:2DC8  	PUSH ER12
+2:2DCA  	PUSH ER8
+2:2DCC  	PUSH ER4
+可以发现最开头有一个push er14的操作，那么最后就要pop er14。而在复制的过程中，memcpy自己的栈被覆盖了，因此最后pop出来的er14就是D9A4处的D8E0。
+
+2.为什么要先给[D9A7]赋值，而不能直接复制？继续观察memcpy的源码（节选）：
+2:2DD6  	MOV ER0, ER4
+2:2DD8  	L R2, [ER12]
+2:2DDA  	ST R2, [ER4]
+2:2DDC  	ADD ER0, #1
+2:2DDE  	MOV ER4, ER0
+2:2DE0  	ADD ER12, #1
+2:2DE2  	L ER0, 02h[FP]
+2:2DE4  	ADD ER0, #-1
+2:2DE6  	ST ER0, 02h[FP]
+2:2DE8  	MOV ER0, #0
+2:2DEA  	L ER2, 02h[FP]
+2:2DEC  	CMP ER0, ER2
+2:2DEE  	BC LT, 22DD6h
+调用memcpy时栈顶的那两个字节就是给它的复制长度。只有当这两个字节为0时，循环才会退出，因此任何复制过程都会把这两个字节变成0，只能手动赋值。除此之外，为什么复制长度是0101和0100呢？如果复制长度是0100，那就只会复制到D9A5为止；如果复制长度是0101，那么复制到D9A5时，剩余的复制长度是0001，接下来复制D9A6，由于D23A处的值也是01，所以复制了等于没复制，减一以后就退出循环了。这样，可以避免复制到后面的区域（如果多复制，就至少要多复制256字节），同时还能保证复制到一切必要的数据。

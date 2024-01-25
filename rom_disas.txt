@@ -28240,8 +28240,9 @@ br2:
 00F73E   E1 A0 11 D1        TB      0D111h.6
 00F742   FB C9              BC      EQ, 0F73Ah
 00F744   F1 CE              BC      AL, 0F728h
+
 00F746   CE F8              PUSH    LR
-00F748   01 F0 22 9D        BL      00h:09D22h
+00F748   01 F0 22 9D        BL      00h:09D22h // ENTER
 00F74C   80 E1              ADD     SP, #-80h
 00F74E   80 E1              ADD     SP, #-80h
 00F750   80 E1              ADD     SP, #-80h
@@ -28375,7 +28376,8 @@ br2:
 00F896   76 B0              L       ER0, -0Ah[FP]
 00F898   01 F2 00 67        BL      02h:06700h
 00F89C   02 E1              ADD     SP, #02h
-00F89E   00 F0 2A 9D        B       00h:09D2Ah
+00F89E   00 F0 2A 9D        B       00h:09D2Ah // LEAVE
+
 00F8A2   01 F0 E4 91        BL      00h:091E4h
 00F8A6   E5 F0              MOV     ER0, ER14
 00F8A8   78 10              ADD     R0, #120
