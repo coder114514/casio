@@ -350,8 +350,8 @@ line_print r0:col,r1:row,er2:char* 0:821E
 br1:
 008254   10 90 37 D1        L       R0, 0D137h
 008258   0E 70              CMP     R0, #14
-00825A   17 C8              BC      NE, 0828Ah //font_size==14则er10++,continue
-00825C   81 EA              ADD     ER10, #1   //else (font_size!=14)
+00825A   17 C8              BC      NE, 0828Ah //font_size!=14则er10++,continue
+00825C   81 EA              ADD     ER10, #1   //else (font_size==14)
 00825E   A0 92              L       R2, [ER10] //再读取一个字符
 008260   85 F0              MOV     ER0, ER8
 008262   01 F0 F6 82        BL      00h:082F6h //char_print r0:col,r1:row,er2:char
@@ -383,23 +383,34 @@ br4:
 008292   3E F8              POP     QR8
 008294   8E F2              POP     PC
 
-r13 = #11 if font_size==#14
-      #6  else
 
-r3字符头（单字节为0，双字节为对应字符头Fx
+er2: ptr
+r1: row
+r0: col
 
-读取r2为：
-1. 0x4
-if font_size==#14: er10++
-else:              er10++, r2=*er10, print er2, r8+=9, r3=0, r12++
-2. Fx
-                   r3=r2, er10++
-3. 0x1
-                        call 0:8296,        r3=0, r12++, er10++
-4. 普通的字符(其他)
-                   print er2, r8+=delta_r8, r3=0, r12++, er10++
-delta_r8 = #12  if r3==0xF1 || r3==0xF2
-           r13  else
+line_print(&ptr,row,&col_px)
+	cnt<-0
+	header<-0
+	d_px<-(font_size==14?11:6)
+	while col_px<=192-d_px && *ptr!=0:
+		if *ptr>=0xF0
+			header<-*ptr
+			ptr++
+			continue
+		if *ptr==0x04
+			ptr++
+			if font_size!=14: continue
+			char_print((header,*ptr),row,col_px)
+			col_px+=9
+		elif *ptr==0x01
+			call 0:8296
+		else
+			char_print((header,*ptr),row,col_px)
+			col_px+=(header==0xF1||header==0xF2 ? 12 : d_px)
+		header<-0
+		ptr++
+		cnt++
+	col_px<-cnt
 
 =====================================================================================
 gadget: 0:EBCE
