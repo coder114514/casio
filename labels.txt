@@ -92,7 +92,7 @@
 10E58		get_serial_num  # char* output
 22140		diag_check_key
 1FCBE		diag_contrast  # (use_english: bool @r0)
-.l_034		language_chinese
+.l_034		.language_chinese
 
 27BC8		diag_8_keytest
 
