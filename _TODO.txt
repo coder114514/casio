@@ -1,2 +1,0 @@
-rop-editor 做可能的改进，以及给出一个输入方法 https://tieba.baidu.com/p/8873243295 9楼
-rop-snake
