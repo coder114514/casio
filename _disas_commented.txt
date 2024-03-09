@@ -3,9 +3,66 @@
 000002   FE 93              0:93FE reset routine entry point for BRK with ELEVEL=2,3 or externel reset input
 000004   00 94              0:9400 reset routine entry point for BRK with ELEVEL=0,1
 000006   60 00              NMICE interrupt
-000008   EC 93              NMI interrupt plus maskable interrupts
-......   .. ..              ...
-00007E   7E 4A              NMI interrupt plus maskable interrupts
+000008   EC 93              non-maskable interrupts plus maskable interrupts
+00000A   EC 93              NMI + MI
+00000C   EC 93              NMI + MI
+00000E   EC 93              NMI + MI
+000010   EC 93              NMI + MI
+000012   EE 93              NMI + MI
+000014   EC 93              NMI + MI
+000016   EC 93              NMI + MI
+000018   EC 93              NMI + MI
+00001A   EC 93              NMI + MI
+00001C   EC 93              NMI + MI
+00001E   EC 93              NMI + MI
+000020   EC 93              NMI + MI
+000022   EC 93              NMI + MI
+000024   EC 93              NMI + MI
+000026   EC 93              NMI + MI
+000028   EC 93              NMI + MI
+00002A   EC 93              NMI + MI
+00002C   02 1B              NMI + MI
+00002E   00 00              NMI + MI
+000030   52 1A              NMI + MI
+000032   80 35              NMI + MI
+000034   22 1B              NMI + MI
+000036   52 0B              NMI + MI
+000038   AE 67              NMI + MI
+00003A   F8 67              NMI + MI
+00003C   EA 76              NMI + MI
+00003E   20 64              NMI + MI
+000040   88 64              NMI + MI
+000042   08 65              NMI + MI
+000044   56 5F              NMI + MI
+000046   A4 5C              NMI + MI
+000048   98 5D              NMI + MI
+00004A   BC 5A              NMI + MI
+00004C   60 5B              NMI + MI
+00004E   C0 58              NMI + MI
+000050   BC 59              NMI + MI
+000052   DA 55              NMI + MI
+000054   F0 57              NMI + MI
+000056   BC 53              NMI + MI
+000058   6A 5B              NMI + MI
+00005A   C6 58              NMI + MI
+00005C   C6 59              NMI + MI
+00005E   E4 55              NMI + MI
+000060   FA 57              NMI + MI
+000062   C6 53              NMI + MI
+000064   38 55              NMI + MI
+000066   B8 52              NMI + MI
+000068   46 53              NMI + MI
+00006A   A6 50              NMI + MI
+00006C   04 58              NMI + MI
+00006E   D4 53              NMI + MI
+000070   3E 55              NMI + MI
+000072   C2 52              NMI + MI
+000074   4E 53              NMI + MI
+000076   AC 50              NMI + MI
+000078   1E 51              NMI + MI
+00007A   F0 4E              NMI + MI
+00007C   B8 4F              NMI + MI
+00007E   7E 4A              NMI + MI
 000080   FC 49              SWI #0
 000082   06 4F              SWI #1
 000084   F6 4D              SWI #2
