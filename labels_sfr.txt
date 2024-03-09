@@ -1,7 +1,8 @@
 # Special function registers (SFR) for ES PLUS calculator model.
 
 d_0F000		hardware.dsr
-d_0F008
+d_0F008		hardware.stpacp # stop acceptor
+d_0F009		hardware.sbycon # stand by control
 d_0F00A
 d_0F010
 d_0F014

@@ -58,6 +58,8 @@ DC02~DC0B  变量$ 0x24 长度10字节
 DDD4       screen buffer 长度384字节
 E3D4       screen buffer 长度384字节
 ????~EFFF  栈
-F000       可能是 DSR
+F000       DSR
+F008       stop acceptor
+F009       stand by control
 F040       按键 KI (inverted)
 F046       按键 KO
